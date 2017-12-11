@@ -1,0 +1,55 @@
+! UTF-8 support
+XTerm.vt100.locale: true
+
+! Font. Oh, and also disable nasty bold fonts pls. 
+XTerm.vt100.faceName: Ttyp0:size=9:style=Regular
+XTerm*allowBoldFonts: false
+
+! Bell(!?)
+XTerm.vt100.bellIsUrgent: true
+
+! Copy and Paste
+XTerm*VT100.Translations: #override \
+Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+Ctrl Shift <Key>C: copy-selection(CLIPBOARD)
+
+! Colors! 
+
+! Aci theme (Gogh colors)
+!XTerm*background: #000011
+!XTerm*Color0: #363636
+!XTerm*Color1: #ff0883
+!XTerm*Color2: #83ff08
+!XTerm*Color3: #ff8308
+!XTerm*Color4: #0883ff
+!XTerm*Color5: #8308ff
+!XTerm*Color6: #08ff83
+!XTerm*Color7: #b6b6b6
+!XTerm*Color8: #424242
+!XTerm*Color9: #ff1e8e
+!XTerm*Color10: #8eff1e
+!XTerm*Color11: #ff8e1e
+!XTerm*Color12: #1e8eff
+!XTerm*Color13: #8e1eff
+!XTerm*Color14: #1eff8e
+!XTerm*Color15: #c2c2c2
+
+! Hydrid theme
+XTerm*background: #141414
+XTerm*Color0: #282a2e
+XTerm*Color1: #A54242
+XTerm*Color2: #8C9440
+XTerm*Color3: #de935f
+XTerm*Color4: #5F819D
+XTerm*Color5: #85678F
+XTerm*Color6: #5E8D87
+XTerm*Color7: #969896
+XTerm*Color8: #373b41
+XTerm*Color9: #cc6666
+XTerm*Color10: #b5bd68
+XTerm*Color11: #f0c674
+XTerm*Color12: #81a2be
+XTerm*Color13: #b294bb
+XTerm*Color14: #8abeb7
+XTerm*Color15: #c5c8c6
+

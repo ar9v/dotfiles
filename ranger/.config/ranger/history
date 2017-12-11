@@ -1,0 +1,50 @@
+mv Tareas/ACM
+mkdir Notas
+set colorscheme jungle
+set colorscheme snow
+set colorscheme default
+find c
+mkdir CV
+mkdir Tarea01 
+mkdir Tarea02
+delete tarea3.bbl
+search Pictures
+rename [Yvonne_Rogers,_Helen_Sharp,_Jenny_Preece].pdf
+open_with k
+rename arduino
+search bundle
+search how
+help
+find Lis
+open_with x
+open_with 
+rename Prototipo-Baja-Fidelidadq.pdf
+search linux
+search sicpy
+search Tarea04
+search Lisp
+open_with hhhh
+search installs
+open_with hh
+search marcuse
+search unidimensional
+open_with vim
+search azu
+search azufondo
+open_with xplayer
+open_with vlc
+find 
+search tex
+open_with lowriter
+search PROG
+search GU
+search EPS
+search Repor
+search Repo
+search Pict
+find NI
+search NI
+search Linux
+search Linuxl
+delete
+open_with q
