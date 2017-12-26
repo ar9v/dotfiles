@@ -3,7 +3,7 @@
 #
 # Should you change your keyboard layout somewhen, delete
 # this file and re-run i3-config-wizard(1).
-#
+
 
 # i3 config file (v4)
 #
@@ -215,8 +215,8 @@ hide_edge_borders both
 # finds out, if available)
 bar {
         #status_command i3status
-        status_command i3blocks
-        i3bar_command i3bar -t
+		status_command i3blocks
+		i3bar_command i3bar -t
         height 22
         separator_symbol " "
         colors {
@@ -306,3 +306,6 @@ exec xterm ; move to workspace 1
 
 # Load up .Xresources 
 exec xrdb -merge .Xresources
+
+# Enable touchpad click with tap
+exec xinput set-prop 13 276 1
