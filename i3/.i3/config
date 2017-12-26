@@ -112,14 +112,11 @@ bindsym $mod+q exec qutebrowser --backend webengine
 #____________________________________________________________________________________________________________________________________________________
 
 # Variables to manage workspaces
-set $workspace1 "1:"
-set $workspace2 "2:" 
-set $workspace3 "3:" 
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
+bindsym $mod+1 workspace 1 
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
@@ -131,9 +128,9 @@ bindsym $mod+0 workspace 10
 bindsym $mod+Tab workspace next         
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1 
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
@@ -257,11 +254,11 @@ bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 #____________________________________________________________________________________________________________________________________________________
 
 # Enable floating windows for Gimp (dialog boxes are EVERYWHERE) and load it in 3rd workspace
-assign [class="Gimp"] $workspace3
+assign [class="Gimp"] 3
 #____________________________________________________________________________________________________________________________________________________
 
 # Open qutebrowser on the second workspace
-assign [class="qutebrowser"] $workspace2
+assign [class="qutebrowser"] 2
 
 # Enables floating for goddamn gnome-calculator because that's the way it's meant to be for fucks sake
 for_window [class="Gcalctool"] floating enable
@@ -305,7 +302,7 @@ exec_always feh --bg-fill ~/Pictures/Untitled.png
 exec --no-startup-id compton -f --config ~/.compton.conf
 
 # Autoload applications in specific workspaces
-exec xterm ; move to workspace $workspace1 
+exec xterm ; move to workspace 1 
 
 # Load up .Xresources 
 exec xrdb -merge .Xresources

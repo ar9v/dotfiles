@@ -5,4 +5,15 @@
 [core]
 	editor = vim
 [diff]
-	tool = vimdiff
+	tool = vimdiff3
+[alias]
+	co = checkout
+    br = branch
+    ci = commit
+    st = status
+    unstage = reset HEAD --
+    last = log -1 HEAD
+[merge]
+    tool = vimdiff3
+[credential]
+	helper = cache

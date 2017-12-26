@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+
+cd ~
+mkdir Backup
+cd Backup 
+
+printf "\033[0;32mCreating backup...\n"
+printf "\033[0m"
+for i in $(ls ~ | sed s/Backup//g) # I don't want to (ahem, can't) copy Backup onto itself.
+do
+    cp -r -v ~/$i/ $i
+done
+
+printf "\033[0;33mAuthentication required for mounting\n"
+printf "\033[0m"
+sudo mount /dev/sdb1 /mnt
+
+# Was the device mounted?
+if [ $? -eq 0 ]
+then
+    cd ~ ; mv Backup /mnt/
+    printf "\033[0;32mBackup moved to device successfully.\n"
+else
+    printf "\033[0;33mNo device found; Backup directory remains in ~\n"
+fi
+umount /mnt
+
+exit 0
