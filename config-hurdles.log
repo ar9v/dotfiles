@@ -1,0 +1,39 @@
+This is a text file that describes some of the hurdles in configuration that arise when
+changing distros. It should be read before a distro hop. Most of the time, dotfiles
+will work out of the box (provided the programs are installed). However, this is not
+always the case. 
+
+ISSUE 1: xbacklight
+Check xorg.conf in /etc/X11/; xbacklight might not be probing the device correctly
+(in this case LVDS-1).
+
+ISSUE 1.1: pactl
+For the volume controle to work, one needs pactl (from the pulseaudio-utils). I can't
+say for sure if you can use alsa by itself. That is out of the scope of this file. 
+
+ISSUE 2: xinput and touchpad controls
+Sometimes, tap to click doesn't work out of the box. Xinput is used to configure the device.
+NOTE: The default property can't be changed. Watch out for that. For example, in my touchpad,
+the default tap-to-click property is number 276, whereas 275 is the non-default. You have to 
+use property id 275. When in doubt, use xinput --list and xinput --list-props to find the
+information you need.
+
+ISSUE 3: UW-Ttyp0 fonts and misc madness
+First and foremost, you have to install the fonts. UW-Ttyp0 comes packaged and has an install
+script, but I've yet to make it work; I suspect the prefix and dirs to fonts are the culprits.
+In any case, some useful things:
+    1. xset fp+ adds a path for fonts
+    2. fc-cache -fv updates fonts
+Because of this madness, I have found myself in the need of writing out the whole font description
+as opposed to the simpler pango syntax (pango:Ttyp0 9, for example). It is a shame, and will probably
+cause me some headaches in the future, so it's worth noting (so that I eventually get to fixing it).
+The "problems" section of the INSTALL file touches upon this problem. Namely, one needs to add a file
+to /etc/fonts/conf.d/ that enables bitmap fonts. Said XML is found in that file.
+
+ISSUE 4: Xmodmap and Setxkbmap; Swapping Control around
+Xmodmap is plain weird. That and I'm also pretty stupid. So for the sake of being brief, this is what I'll say:
+The i3 config file has "xmodmap ~/.xmodmap", which has the command to make the Right-Click Menu button turn into
+another modifier key for i3, and the "setxkbmap -option ctrl:nocaps" command, because for some reason, the xmodmap
+commands I had don't work anymore. More on this later (someday).
+P.D: setxkbmap is not the best solution. I've found that it trips up the configuration if Mod+Shift+r is used 
+(i.e. when an i3 session is refreshed).

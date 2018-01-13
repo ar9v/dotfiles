@@ -12,6 +12,10 @@
 #
 # Setting the mod keys
 # Consider that, by using modmap, Menu was remapped to Super_R, which also happens to be Mod4.
+#
+# The first command adds ctrl to caps lock key. However, setxkbmap usually defines the layout, so on top of it, I have to use xmodmap to change the 
+# Right-Click menu button to Super_R
+exec_always setxkbmap -option ctrl:nocaps
 exec_always xmodmap ~/.xmodmap
 # exec_always xmodmap -e "keysym Menu = Super_R"
 # Therefore, both keys can be used as modifiers.
@@ -20,12 +24,13 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:Ttyp0 9
+#font -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1
+font pango:Ttyp0 9 
 #____________________________________________________________________________________________________________________________________________________
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -114,7 +119,7 @@ bindsym $mod+q exec qutebrowser --backend webengine
 # Variables to manage workspaces
 
 # switch to workspace
-bindsym $mod+1 workspace 1 
+bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
@@ -237,8 +242,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5% # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5% # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -291,7 +296,7 @@ gaps inner 6
 gaps outer 6
 
 # Enable smart gaps
-smart_gaps on
+#smart_gaps on
 
 #____________________________________________________________________________________________________________________________________________________
 # AUTOSTART
@@ -308,4 +313,5 @@ exec xterm ; move to workspace 1
 exec xrdb -merge .Xresources
 
 # Enable touchpad click with tap
-exec xinput set-prop 13 276 1
+exec_always xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 
+

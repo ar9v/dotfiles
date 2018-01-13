@@ -189,3 +189,6 @@ let g:tex_flavor='latex'
 " I want to compile LaTeX to pdf.
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_MultipleCompileFormats='pdf,bib,pdf'
+
+" I want to have diacritics
+let g:Tex_Diacritics=1

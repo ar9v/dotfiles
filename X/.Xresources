@@ -2,8 +2,9 @@
 XTerm.vt100.locale: true
 
 ! Font. Oh, and also disable nasty bold fonts pls. 
-XTerm.vt100.faceName: Ttyp0:size=9:style=Regular
-XTerm*allowBoldFonts: false
+!XTerm.vt100.faceName: Ttyp0:size=9:style=Regular
+XTerm*font: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
+XTerm*allowBoldFonts: false 
 
 ! Bell(!?)
 XTerm.vt100.bellIsUrgent: true
@@ -52,4 +53,60 @@ XTerm*Color12: #81a2be
 XTerm*Color13: #b294bb
 XTerm*Color14: #8abeb7
 XTerm*Color15: #c5c8c6
+
+! URXVT stuff
+!
+! Font. Oh, and also disable nasty bold fonts pls. 
+!XTerm.vt100.faceName: Ttyp0:size=9:style=Regular
+URxvt*font: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
+URxvt*allowBoldFonts: false 
+
+! Bell(!?)
+URxvt.vt100.bellIsUrgent: true
+
+! Copy and Paste
+URxvt*VT100.Translations: #override \
+Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+Ctrl Shift <Key>C: copy-selection(CLIPBOARD)
+
+! Colors! 
+
+! Aci theme (Gogh colors)
+!URxvt*background: #000011
+!URxvt*Color0: #363636
+!URxvt*Color1: #ff0883
+!URxvt*Color2: #83ff08
+!URxvt*Color3: #ff8308
+!URxvt*Color4: #0883ff
+!URxvt*Color5: #8308ff
+!URxvt*Color6: #08ff83
+!URxvt*Color7: #b6b6b6
+!URxvt*Color8: #424242
+!URxvt*Color9: #ff1e8e
+!URxvt*Color10: #8eff1e
+!URxvt*Color11: #ff8e1e
+!URxvt*Color12: #1e8eff
+!URxvt*Color13: #8e1eff
+!URxvt*Color14: #1eff8e
+!URxvt*Color15: #c2c2c2
+
+! Hydrid theme
+URxvt*background: #141414
+URxvt*foreground: #FFFFFF
+URxvt*Color0: #282a2e
+URxvt*Color1: #A54242
+URxvt*Color2: #8C9440
+URxvt*Color3: #de935f
+URxvt*Color4: #5F819D
+URxvt*Color5: #85678F
+URxvt*Color6: #5E8D87
+URxvt*Color7: #969896
+URxvt*Color8: #373b41
+URxvt*Color9: #cc6666
+URxvt*Color10: #b5bd68
+URxvt*Color11: #f0c674
+URxvt*Color12: #81a2be
+URxvt*Color13: #b294bb
+URxvt*Color14: #8abeb7
+URxvt*Color15: #c5c8c6
 
