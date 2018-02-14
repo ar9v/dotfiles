@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# TODO: 
+#   - Maybe use some sort of diff tool to see when copying is not required?
+#   - Include a more thorough check of devices (i.e. sdb is not the only device)
 
 cd ~
 mkdir Backup
