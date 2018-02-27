@@ -143,7 +143,7 @@ set shiftwidth=4
 set tabstop=4
 
 "___________________________________________________________
-" Personal add-ons made by me (gvlanric06)
+" Personal add-ons made by me (argv)
 
 "-----------------------------------------------------------
 colo srcery-drk 
@@ -165,8 +165,13 @@ set encoding=utf-8
 "___________________________________________________________
 " Skeleton referrals to ~/.vim/ftplugin (instead of ~/.vim/plugin)
 
-" C++ Skeleton. Works for files named \"main.cpp\" 
-autocmd BufNewFile main.cpp source ~/.vim/ftplugin/cppskeleton.vim
+" C++ Skeleton. 
+autocmd BufNewFile *.cpp :-1read ~/.vim/ftplugin/cppskeleton.vim | :norm }}o 
+
+"____________________________________________________________
+" Ctags madness
+" :autocmd BufWritePost * call system("ctags -R")
+" :nnoremap <f5> :!ctags -R<CR>
 
 "____________________________________________________________
 " Vim-LaTeX config

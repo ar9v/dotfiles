@@ -323,6 +323,7 @@ automatic-package-detection	latex-suite.txt.gz	/*automatic-package-detection*
 bibtex	latexhelp.txt.gz	/*bibtex*
 bibtex-bindings	latex-suite.txt.gz	/*bibtex-bindings*
 book-class	latexhelp.txt.gz	/*book-class*
+cS	surround.txt	/*cS*
 center	latexhelp.txt.gz	/*center*
 changing-commands	latex-suite.txt.gz	/*changing-commands*
 changing-environments	latex-suite.txt.gz	/*changing-environments*
@@ -332,6 +333,7 @@ compiler-output-customization	latex-suite.txt.gz	/*compiler-output-customization
 compiler-rules	latex-suite.txt.gz	/*compiler-rules*
 compiling-multiple	latex-suite.txt.gz	/*compiling-multiple*
 completion-window-preferences	latex-suite.txt.gz	/*completion-window-preferences*
+cs	surround.txt	/*cs*
 csexact-commands	CSExact.txt	/*csexact-commands*
 csexact-config	CSExact.txt	/*csexact-config*
 csexact-csapprox	CSExact.txt	/*csexact-csapprox*
@@ -362,6 +364,7 @@ description	latexhelp.txt.gz	/*description*
 diacritic-mappings	latex-suite.txt.gz	/*diacritic-mappings*
 displaymath	latexhelp.txt.gz	/*displaymath*
 draft	latexhelp.txt.gz	/*draft*
+ds	surround.txt	/*ds*
 editing-folding	latex-suite.txt.gz	/*editing-folding*
 empty	latexhelp.txt.gz	/*empty*
 enabling-searching	latex-suite.txt.gz	/*enabling-searching*
@@ -395,6 +398,8 @@ g:csexact_term_override	CSExact.txt	/*g:csexact_term_override*
 greek-letter-mappings	latex-suite.txt.gz	/*greek-letter-mappings*
 headings	latexhelp.txt.gz	/*headings*
 hyph-	latexhelp.txt.gz	/*hyph-*
+i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
+i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
 im_1	imaps.txt.gz	/*im_1*
 imaps-usage	imaps.txt.gz	/*imaps-usage*
 imaps.txt	imaps.txt.gz	/*imaps.txt*
@@ -923,6 +928,13 @@ sub-sup	latexhelp.txt.gz	/*sub-sup*
 subscripts	latexhelp.txt.gz	/*subscripts*
 superscripts	latexhelp.txt.gz	/*superscripts*
 supporting-packages	latex-suite.txt.gz	/*supporting-packages*
+surround	surround.txt	/*surround*
+surround-customizing	surround.txt	/*surround-customizing*
+surround-issues	surround.txt	/*surround-issues*
+surround-mappings	surround.txt	/*surround-mappings*
+surround-replacements	surround.txt	/*surround-replacements*
+surround-targets	surround.txt	/*surround-targets*
+surround.txt	surround.txt	/*surround.txt*
 tab'	latexhelp.txt.gz	/*tab'*
 tab+	latexhelp.txt.gz	/*tab+*
 tab-	latexhelp.txt.gz	/*tab-*
@@ -937,6 +949,12 @@ theorem	latexhelp.txt.gz	/*theorem*
 titlepage	latexhelp.txt.gz	/*titlepage*
 twocolumn	latexhelp.txt.gz	/*twocolumn*
 twoside	latexhelp.txt.gz	/*twoside*
+vS	surround.txt	/*vS*
 verbatim	latexhelp.txt.gz	/*verbatim*
 verse	latexhelp.txt.gz	/*verse*
+vgS	surround.txt	/*vgS*
 why-IMAP	latex-suite.txt.gz	/*why-IMAP*
+yS	surround.txt	/*yS*
+ySS	surround.txt	/*ySS*
+ys	surround.txt	/*ys*
+yss	surround.txt	/*yss*

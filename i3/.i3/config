@@ -49,6 +49,9 @@ bindsym $mod+Shift+q kill
 # Start a menu launcher
 bindsym $mod+d exec dmenu_run -i -l 5 -nb \#000 -nf \#aa0000 -sb \#2c2c2c -sf \#ff0000 -fn "Ttyp0:size=9"
 
+# Bind a key for screenkey
+# Only a temporary change
+bindsym $mod+u exec ~/installs/screenkey/screenkey
 #____________________________________________________________________________________________________________________________________________________
 
 # change focus
