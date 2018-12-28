@@ -2,3 +2,5 @@ ranger/.config/ranger/history
 ranger/.config/ranger/bookmarks
 vim/.vim/.netrwhist
 qutebrowser/.config/qutebrowser/qsettings/QtProject.conf
+*~
+\#*

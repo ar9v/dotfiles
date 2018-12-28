@@ -1,3 +1,5 @@
+!!! Xterm
+
 ! UTF-8 support
 XTerm.vt100.locale: true
 
@@ -6,12 +8,6 @@ XTerm.vt100.faceName: Ttyp0:size=8:style=Regular
 !XTerm.vt100.faceName: Ttyp0
 XTerm.vt100.faceSize5: 13 
 XTerm.vt100.faceSize6: 15
-!XTerm*font1: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
-!XTerm*font2: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
-!XTerm*font3: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
-!XTerm*font4: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
-!XTerm*font5: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
-!XTerm*font6: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
 XTerm*allowBoldFonts: false 
 
 ! Dynamic font size change
@@ -19,107 +15,28 @@ XTerm.vt100.translations: #override \n\
   Ctrl <Key> minus: smaller-vt-font() \n\
   Ctrl <Key> plus: larger-vt-font()
 
-! Bell(!?)
-XTerm.vt100.bellIsUrgent: true
-
 ! Copy and Paste
 XTerm*VT100.Translations: #override \
 Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
 Ctrl Shift <Key>C: copy-selection(CLIPBOARD)
 
-! Colors! 
+!!! URXVT stuff
 
-! Aci theme (Gogh colors)
-!!XTerm*background: #000011
-!!XTerm*Color0: #363636
-!!XTerm*Color1: #ff0883
-!!XTerm*Color2: #83ff08
-!!XTerm*Color3: #ff8308
-!!XTerm*Color4: #0883ff
-!!XTerm*Color5: #8308ff
-!!XTerm*Color6: #08ff83
-!!XTerm*Color7: #b6b6b6
-!!XTerm*Color8: #424242
-!!XTerm*Color9: #ff1e8e
-!!XTerm*Color10: #8eff1e
-!!XTerm*Color11: #ff8e1e
-!!XTerm*Color12: #1e8eff
-!!XTerm*Color13: #8e1eff
-!!XTerm*Color14: #1eff8e
-!!XTerm*Color15: #c2c2c2
+Urxvt.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+  Ctrl <Key> plus: larger-vt-font()
 
-! Hydrid theme
-XTerm*background: #141414
-XTerm*Color0: #282a2e
-XTerm*Color1: #A54242
-XTerm*Color2: #8C9440
-XTerm*Color3: #de935f
-XTerm*Color4: #5F819D
-XTerm*Color5: #85678F
-XTerm*Color6: #5E8D87
-XTerm*Color7: #969896
-XTerm*Color8: #373b41
-XTerm*Color9: #cc6666
-XTerm*Color10: #b5bd68
-XTerm*Color11: #f0c674
-XTerm*Color12: #81a2be
-XTerm*Color13: #b294bb
-XTerm*Color14: #8abeb7
-XTerm*Color15: #c5c8c6
 
-! URXVT stuff
-!
 ! Font. Oh, and also disable nasty bold fonts pls. 
-!XTerm.vt100.faceName: Ttyp0:size=9:style=Regular
-URxvt*font: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
-URxvt*allowBoldFonts: false 
+URxvt.font: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
+URxvt.boldFont: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
 
-! Bell(!?)
-URxvt.vt100.bellIsUrgent: true
+URxvt.scrollBar: false
+URxvt.fading: 30
 
-! Copy and Paste
-URxvt*VT100.Translations: #override \
-Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
-Ctrl Shift <Key>C: copy-selection(CLIPBOARD)
-
-! Colors! 
-
-! Aci theme (Gogh colors)
-!URxvt*background: #000011
-!URxvt*Color0: #363636
-!URxvt*Color1: #ff0883
-!URxvt*Color2: #83ff08
-!URxvt*Color3: #ff8308
-!URxvt*Color4: #0883ff
-!URxvt*Color5: #8308ff
-!URxvt*Color6: #08ff83
-!URxvt*Color7: #b6b6b6
-!URxvt*Color8: #424242
-!URxvt*Color9: #ff1e8e
-!URxvt*Color10: #8eff1e
-!URxvt*Color11: #ff8e1e
-!URxvt*Color12: #1e8eff
-!URxvt*Color13: #8e1eff
-!URxvt*Color14: #1eff8e
-!URxvt*Color15: #c2c2c2
-
-! Hydrid theme
-URxvt*background: #141414
-URxvt*foreground: #FFFFFF
-URxvt*Color0: #282a2e
-URxvt*Color1: #A54242
-URxvt*Color2: #8C9440
-URxvt*Color3: #de935f
-URxvt*Color4: #5F819D
-URxvt*Color5: #85678F
-URxvt*Color6: #5E8D87
-URxvt*Color7: #969896
-URxvt*Color8: #373b41
-URxvt*Color9: #cc6666
-URxvt*Color10: #b5bd68
-URxvt*Color11: #f0c674
-URxvt*Color12: #81a2be
-URxvt*Color13: #b294bb
-URxvt*Color14: #8abeb7
-URxvt*Color15: #c5c8c6
-
+! Emacs
+Emacs.font: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
+Emacs.toolBar: off
+Emacs.menuBar: off
+Emacs.Background: black
+Emacs.Foreground: white 

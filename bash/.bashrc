@@ -142,12 +142,10 @@ set -o vi
 # Sets my EDITOR variable so as to use Vim
 export EDITOR='/usr/bin/vim'
 
-export PATH="$HOME/.cargo/bin:$PATH"
-
 # New PS1 variable
-export PS1="\[\033[0;36m\]\u\[\033[0;37m\]@\[\033[1;31m\]\h \[\033[1;32m\]\W \[\033[0;33m\]\A \[\e[0;37m\]$ \[\033[0m\]"
+export PS1=$'\[\033[0;36m\]\u\[\033[0;37m\]@\[\033[1;31m\]\h \[\033[1;32m\]\W \[\e[1;34m\]\u03bb \[\033[0m\]'
 
-##Enables full 256 color support
+## Enables full 256 color support
 [[ -n "$DISPLAY" && "$TERM" = "xterm" ]] && export TERM="xterm-256color"
 
 if [ -e /usr/share/terminfo/x/xterm+256color ]; 
@@ -174,3 +172,17 @@ function ranger-cd {
 
 # This binds Ctrl-0 to ranger-cd:
 bind '"\C-o":"ranger-cd\C-m"'
+
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
+
+# Alternative (blocks terminal for 0-3ms)
+cat ~/.cache/wal/sequences
+
+# To add support for TTYs this line can be optionally added.
+source ~/.cache/wal/colors-tty.sh
+
+# INFOPATH
+export INFOPATH="/usr/share/info"

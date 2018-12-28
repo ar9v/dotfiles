@@ -4,6 +4,17 @@
 "              newbie, basing your first .vimrc on this file is a good choice.
 "              If you're a more advanced user, building your own .vimrc based
 "              on this file is still a good idea.
+"
+" Plugins
+call plug#begin('~/.vim/plugged')
+
+    Plug 'dylanaraps/wal.vim'
+
+    colorscheme wal
+
+ " Initialize plugin system
+call plug#end()
+
  
 "------------------------------------------------------------
 " Features {{{1
@@ -146,7 +157,6 @@ set tabstop=4
 " Personal add-ons made by me (argv)
 
 "-----------------------------------------------------------
-colo srcery-drk 
 set t_ut=
 
 "-----------------------------------------------------------
@@ -166,7 +176,10 @@ set encoding=utf-8
 " Skeleton referrals to ~/.vim/ftplugin (instead of ~/.vim/plugin)
 
 " C++ Skeleton. 
-autocmd BufNewFile *.cpp :-1read ~/.vim/ftplugin/cppskeleton.vim | :norm }}o 
+autocmd BufNewFile *.cpp :0read ~/.vim/ftplugin/cppskeleton.vim | :norm }}o 
+
+" C++ includes for completion
+" set path=.,/usr/include,,/usr/include/c++/6.3.0
 
 "____________________________________________________________
 " Ctags madness

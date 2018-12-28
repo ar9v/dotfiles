@@ -17,8 +17,11 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+PATH="$HOME/bin:$HOME/.local/bin:$PATH:/opt/mssql-tools/bin"
 
-if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
-	startx
-fi
+# run program to manage sessions
+session-choose
+
+#if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+#    startx
+#fi

@@ -13,9 +13,8 @@
 # Setting the mod keys
 # Consider that, by using modmap, Menu was remapped to Super_R, which also happens to be Mod4.
 #
-# The first command adds ctrl to caps lock key. However, setxkbmap usually defines the layout, so on top of it, I have to use xmodmap to change the 
+# The first command adds esc to caps lock key. However, setxkbmap usually defines the layout, so on top of it, I have to use xmodmap to change the 
 # Right-Click menu button to Super_R
-exec_always setxkbmap -option ctrl:nocaps
 exec_always xmodmap ~/.xmodmap
 # exec_always xmodmap -e "keysym Menu = Super_R"
 # Therefore, both keys can be used as modifiers.
@@ -39,7 +38,8 @@ floating_modifier $mod
 
 
 # start a terminal
-bindsym $mod+Return exec xterm
+#bindsym $mod+Return exec xterm
+bindsym $mod+Return exec urxvt
 #____________________________________________________________________________________________________________________________________________________
 
 # kill focused window
@@ -47,7 +47,7 @@ bindsym $mod+Shift+q kill
 #____________________________________________________________________________________________________________________________________________________
 
 # Start a menu launcher
-bindsym $mod+d exec dmenu_run -i -l 5 -nb \#000 -nf \#aa0000 -sb \#2c2c2c -sf \#ff0000 -fn "Ttyp0:size=9"
+#bindsym $mod+d exec dmenu_run -i -l 5 -nb \#000 -nf \#aa0000 -sb \#2c2c2c -sf \#ff0000 -fn "Ttyp0:size=9"
 
 # Bind a key for screenkey
 # Only a temporary change
@@ -200,21 +200,74 @@ mode "$mode_system" {
 bindsym $mod+Pause mode "$mode_system"
 #____________________________________________________________________________________________________________________________________________________
 
-# window colors
+# Gaps mode
+mode "gaps" {
+    # Pressing "f" toggles fullscreen gap for single window
+    bindsym f gaps outer all set 0, gaps inner all set 0 
+    bindsym shift+f gaps outer all set 6, gaps inner all set 6
 
-set $bg-color               #000000
-set $inactive-bg-color      #2c2c2c
-set $text-color             #919191
-set $inactive-text-color    #707070
-set $urgent-bg-color        #ffffff
-set $inactive-button-color  #992200
-set $active-button-color    #ff0000 
+    # back to normal
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+g mode "gaps"
 
-# mode                      border              background           text                   indicator
-client.focused              $bg-color           $bg-color            $text-color            #000000
-client.unfocused            $inactive-bg-color  $inactive-bg-color   $inactive-text-color   #000000
-client.focused_inactive     $inactive-bg-color  $inactive-bg-color   $inactive-text-color   #000000
-client.urgent               $urgent-bg-color    $urgent-bg-color     $bg-color              #000000
+## window colors
+#
+#set $bg-color               #000000
+#set $inactive-bg-color      #2c2c2c
+#set $text-color             #919191
+#set $inactive-text-color    #707070
+#set $inactive-button-color  #992200
+#set $active-button-color    #ff0000 
+#
+## mode                      border              background           text                   indicator
+#client.focused              $bg-color           $bg-color            $text-color            #000000
+#client.unfocused            $inactive-bg-color  $inactive-bg-color   $inactive-text-color   #000000
+#client.focused_inactive     $inactive-bg-color  $inactive-bg-color   $inactive-text-color   #000000
+#client.urgent               $urgent-bg-color    $urgent-bg-color     $bg-color              #000000
+
+# Wal colors
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use 
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+set_from_resource $act i3wm.color1 #f0f0f0
+set_from_resource $oth i3wm.color4 #f0f0f0 
+
+set_from_resource $col1 i3wm.color1 #f0f0f0
+set_from_resource $col2 i3wm.color2 #f0f0f0
+set_from_resource $col2 i3wm.color3 #f0f0f0
+set_from_resource $col3 i3wm.color4 #f0f0f0
+set_from_resource $col4 i3wm.color5 #f0f0f0
+set_from_resource $col5 i3wm.color6 #f0f0f0
+set_from_resource $col6 i3wm.color7 #f0f0f0
+set_from_resource $col7 i3wm.color8 #f0f0f0
+set_from_resource $col8 i3wm.color9 #f0f0f0
+set_from_resource $col9 i3wm.color10 #f0f0f0
+set_from_resource $col10 i3wm.color11 #f0f0f0
+set_from_resource $col11 i3wm.color12 #f0f0f0
+set_from_resource $col12 i3wm.color13 #f0f0f0
+set_from_resource $col13 i3wm.color14 #f0f0f0
+set_from_resource $col14 i3wm.color15 #f0f0f0
+set_from_resource $col15 i3wm.color16 #f0f0f0
+
+set $urgent-bg-color $col8       
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $act    $fg  $act      $act
+client.unfocused        $act    $act    $fg  $bg       $act
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
+# PROTIP: You can also dynamically set dmenu's colors this way:
+bindsym $mod+d exec dmenu_run -nb "$bg" -nf "$fg" -sb "$fg" -sf "$oth" -fn "Ttyp0:size=9"
 
 # hides the edges that indicate where new windows will be created
 hide_edge_borders both
@@ -228,15 +281,33 @@ bar {
         height 22
         separator_symbol " "
         colors {
-            background #010607bb
+            #background #010607bb
+            background #000000cc
             separator #000000
 
             # mode              border              background              text
-            focused_workspace   #0a1517             #0a1517                 #4f7e7f
-            inactive_workspace  #0a1517             #0a1517                 #0c3a3c
+            focused_workspace   $bg                 #010607bb               $bg
+            inactive_workspace  #010607bb           #010607bb               $bg
             urgent_workspace    $urgent-bg-color    $urgent-bg-color        $bg-color
         }
 }
+
+#bar {
+#        #status_command i3status
+#		status_command i3blocks
+#		i3bar_command i3bar -t
+#        height 22
+#        separator_symbol " "
+#        colors {
+#            background $bg
+#            separator #000000 
+#
+#            # mode              border              background              text
+#            focused_workspace   $fg                 $fg                     $fg  
+#            inactive_workspace  $bg                 $bg                     $bg
+#            urgent_workspace    #ffffff             #ffffff                 $bg
+#        }
+#}
 #____________________________________________________________________________________________________________________________________________________
 
 # Pulse Audio controls
@@ -263,6 +334,7 @@ bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 # Enable floating windows for Gimp (dialog boxes are EVERYWHERE) and load it in 3rd workspace
 assign [class="Gimp"] 3
+
 #____________________________________________________________________________________________________________________________________________________
 
 # Open qutebrowser on the second workspace
@@ -304,16 +376,20 @@ gaps outer 6
 #____________________________________________________________________________________________________________________________________________________
 # AUTOSTART
 # Display my background image always (since startup)
-exec_always feh --bg-fill ~/Pictures/Untitled.png
+#exec_always feh --bg-fill ~/Pictures/Untitled.png
+exec_always wal -R
 
 # Compton start
 exec --no-startup-id compton -f --config ~/.compton.conf
 
 # Autoload applications in specific workspaces
-exec xterm ; move to workspace 1 
+exec urxvt ; move to workspace 1 
 
 # Load up .Xresources 
 exec xrdb -merge .Xresources
 
 # Enable touchpad click with tap
 exec_always xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 
+
+# I hate it when ranger changes back to the old colorscheme so..
+bindsym $mod+c exec wal -R 

@@ -1,3 +1,1 @@
-. /etc/X11/Xsession
-
-exec i3
+/usr/local/bin/stumpwm

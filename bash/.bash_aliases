@@ -1,5 +1,4 @@
 alias compile='g++ -o'
-alias evap='cd Desktop/TecDeMty/Sem4/evap'
 alias debug='g++ -g'
 alias l='ls -CF --color=auto'
 alias l.='ls -d .* --color=auto'
