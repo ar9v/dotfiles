@@ -134,8 +134,12 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+## rbenv setup (path and init for shell integration)
+export PATH="$PATH:/home/argv/.rbenv/bin"
+eval "$(rbenv init -)"
+
 # Make command line editing vi mode
-set -o vi
+# set -o vi
 
 ## ENVIRONMENT VARIABLES
 
@@ -148,11 +152,11 @@ export PS1=$'\[\033[0;36m\]\u\[\033[0;37m\]@\[\033[1;31m\]\h \[\033[1;32m\]\W \[
 ## Enables full 256 color support
 [[ -n "$DISPLAY" && "$TERM" = "xterm" ]] && export TERM="xterm-256color"
 
-if [ -e /usr/share/terminfo/x/xterm+256color ]; 
+if [ -e /usr/share/terminfo/r/rxvt-unicode-256color ]; 
 then
-    export TERM='xterm-256color'
+    export TERM='rxvt-unicode-256color'
 else
-    export TERM='xterm-256color'
+    export TERM='rxvt-unicode-256color'
 fi
 
 # Sets the Mail Environment Variable
@@ -173,16 +177,11 @@ function ranger-cd {
 # This binds Ctrl-0 to ranger-cd:
 bind '"\C-o":"ranger-cd\C-m"'
 
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-(cat ~/.cache/wal/sequences &)
-
-# Alternative (blocks terminal for 0-3ms)
-cat ~/.cache/wal/sequences
-
-# To add support for TTYs this line can be optionally added.
-source ~/.cache/wal/colors-tty.sh
-
 # INFOPATH
 export INFOPATH="/usr/share/info"
+
+# Base16 Shell
+BASE16_SHELL="$HOME/installs/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"

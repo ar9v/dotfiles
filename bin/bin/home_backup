@@ -10,14 +10,14 @@ cd Backup
 
 printf "\033[0;32mCreating backup...\n"
 printf "\033[0m"
-for i in $(ls ~ | sed s/Backup//g) # I don't want to (ahem, can't) copy Backup onto itself.
+for i in $(ls -a ~ | sed s/Backup//g) # I don't want to (ahem, can't) copy Backup onto itself.
 do
     cp -r -v ~/$i/ $i
 done
 
 printf "\033[0;33mAuthentication required for mounting\n"
 printf "\033[0m"
-sudo mount /dev/sdb1 /mnt
+sudo mount /dev/sdb /mnt
 
 # Was the device mounted?
 if [ $? -eq 0 ]

@@ -18,6 +18,7 @@ fi
 
 # set PATH so it includes user's private bin directories
 PATH="$HOME/bin:$HOME/.local/bin:$PATH:/opt/mssql-tools/bin"
+PATH="$PATH:/opt/ghc/bin"
 
 # run program to manage sessions
 session-choose

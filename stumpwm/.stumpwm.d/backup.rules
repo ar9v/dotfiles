@@ -1,0 +1,4 @@
+(("react-work" 2 T T :CREATE "react-work.rule" :CLASS "Zathura")
+ ("react-work" 1 T T :CREATE "react-work.rule" :CLASS "URxvt")
+ ("react-work" 0 T T :CREATE "react-work.rule" :CLASS "Emacs")
+ ("ff" 0 T T :CREATE "react-work.rule" :CLASS "FIREFOX"))

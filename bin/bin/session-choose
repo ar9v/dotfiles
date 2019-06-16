@@ -13,6 +13,7 @@ cat << EOF > ~/.xsession
 #!/bin/bash
 
 xmodmap .xmodmap
+sh ~/.fehbg &
 EOF
 
     read session
