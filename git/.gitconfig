@@ -3,7 +3,7 @@
 	mail = aricav96@gmail.com
 	email = aricav96@gmail.com
 [core]
-	editor = vim
+	editor = emacs
 [diff]
 	tool = vimdiff3
 [alias]

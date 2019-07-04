@@ -1,0 +1,22 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("swm"
+ (filename . "~/dotfiles/stumpwm/.stumpwm.d/init.lisp")
+ (front-context-string . ";; -*-lisp-*-\n;;")
+ (rear-context-string)
+ (position . 1))
+("init.el"
+ (filename . "~/.emacs.d/init.el")
+ (front-context-string . ";; Change backup")
+ (rear-context-string)
+ (position . 1))
+("eintr"
+ (front-context-string . "\nAn Introduction")
+ (rear-context-string . "ace,  Up: (dir)\n")
+ (position . 1569)
+ (filename . "/usr/share/info/eintr")
+ (info-node . "Top")
+ (handler . Info-bookmark-jump))
+)

@@ -143,8 +143,8 @@ eval "$(rbenv init -)"
 
 ## ENVIRONMENT VARIABLES
 
-# Sets my EDITOR variable so as to use Vim
-export EDITOR='/usr/bin/vim'
+# Sets my EDITOR variable so as to use Emacs
+export EDITOR='/usr/bin/emacs'
 
 # New PS1 variable
 export PS1=$'\[\033[0;36m\]\u\[\033[0;37m\]@\[\033[1;31m\]\h \[\033[1;32m\]\W \[\e[1;34m\]\u03bb \[\033[0m\]'

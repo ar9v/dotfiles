@@ -21,7 +21,7 @@ PATH="$HOME/bin:$HOME/.local/bin:$PATH:/opt/mssql-tools/bin"
 PATH="$PATH:/opt/ghc/bin"
 
 # run program to manage sessions
-session-choose
+# session-choose
 
 #if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
 #    startx

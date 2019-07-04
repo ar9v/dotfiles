@@ -1,6 +1,15 @@
+# Ranger
 ranger/.config/ranger/history
 ranger/.config/ranger/bookmarks
+
+# Vim
 vim/.vim/.netrwhist
-qutebrowser/.config/qutebrowser/qsettings/QtProject.conf
+
+# Emacs
+emacs/.emacs.d/elpa/
+emacs/.emacs.d/network-security.data
+emacs/.emacs.d/recentf
+emacs/.emacs.d/ido.last
+
 *~
 \#*
