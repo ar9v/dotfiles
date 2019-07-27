@@ -96,7 +96,16 @@
 ;; Helm
 (require 'helm-config)
 
+;; Auto-insert-mode
+(auto-insert-mode)
+;; (setq auto-insert-query nil)
+(setq auto-insert-directory "~/dotfiles/emacs/.emacs.d/file-templates/")
+(define-auto-insert "~/Desktop/TecDeMty/.*\.org" "front-page-template.org")
+
 ;; Change splash-screen text
+;;;; By inhibiting the splash screen, files opened via ranger do not prompt the
+;;;; default Emacs splash screen
+(setq inhibit-splash-screen t)
 (use-package dashboard
     :ensure t
     :diminish dashboard-mode

@@ -22,6 +22,7 @@ PATH="$PATH:/opt/ghc/bin"
 
 # run program to manage sessions
 # session-choose
+startx
 
 #if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
 #    startx
