@@ -123,5 +123,5 @@
 (add-to-list 'default-frame-alist '(alpha . (85 . 80)))
 
 ;; Set the base16 theme and other aesthetics
-(load-theme 'base16-gruvbox-dark-hard t)
+;; (load-theme 'base16-gruvbox-dark-hard t)
 (scroll-bar-mode -1)

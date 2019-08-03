@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Script to choose a window manager
+# Run this in .profile or the corresponding equivalent in your distribution
 
 while true
 do

@@ -1,32 +1,32 @@
-#!/usr/bin/env bash
-
-# TODO: 
-#   - Maybe use some sort of diff tool to see when copying is not required?
-#   - Include a more thorough check of devices (i.e. sdb is not the only device)
+#!/bin/bash
 
 cd ~
-mkdir Backup
-cd Backup 
 
-printf "\033[0;32mCreating backup...\n"
-printf "\033[0m"
-for i in $(ls -a ~ | sed s/Backup//g) # I don't want to (ahem, can't) copy Backup onto itself.
-do
-    cp -r -v ~/$i/ $i
-done
+# Basically: which device file corresponds to my external hard drive?
+# C4383821A0A1 is the serial number of my ADATA external hard drive
+drive_device="$(lsblk -do +SERIAL | awk '$7=="C4383821A0A1" {print $1}')"
 
-printf "\033[0;33mAuthentication required for mounting\n"
-printf "\033[0m"
-sudo mount /dev/sdb /mnt
-
-# Was the device mounted?
-if [ $? -eq 0 ]
+if [[ $drive_device = "" ]]
 then
-    cd ~ ; mv Backup /mnt/
-    printf "\033[0;32mBackup moved to device successfully.\n"
+    echo -e "External hard drive not connected. \e[1;33mAborting\e[0m"
 else
-    printf "\033[0;33mNo device found; Backup directory remains in ~\n"
-fi
-umount /mnt
+    echo "External hard drive connected at device $drive_device"
+    sudo mount /dev/$drive_device /mnt
 
-exit 0
+    read -p "Do you want to perform a dry run? [Y/y] " -n 1 -r
+    echo
+    echo $REPLY
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+	echo "Performing dry run"
+	sudo rsync -avhn --exclude-from='dotfiles/backup-filters' . /mnt/niyx/
+    else
+	echo "Performing true sync"
+	sudo rsync -avh --exclude-from='dotfiles/backup-filters' . /mnt/niyx/
+    fi
+    
+    # Cleaning up...
+    # This allows us to run the script multiple times (without it, the drive is still mounted and thus will
+    # appear to not be connected when we try again)
+    sudo umount /mnt
+fi

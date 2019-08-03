@@ -13,8 +13,46 @@ URxvt.scrollBar: false
 URxvt.fading: 30
 
 ! Emacs
-Emacs.font: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
-Emacs.toolBar: off
-Emacs.menuBar: off
-Emacs.Background: black
-Emacs.Foreground: white 
+emacs.font: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
+emacs.toolBar: off
+emacs.menuBar: off
+emacs.Foreground:   #cacbd9
+emacs.Background:   #0c0e16
+emacs.cursorColor:  #cacbd9
+
+! special
+*.foreground:   #cacbd9
+*.background:   #0c0e16
+*.cursorColor:  #cacbd9
+
+! black
+*.color0:       #151723
+*.color8:       #e5dc11
+
+! red
+*.color1:       #1e1f2e
+*.color9:       #cdd2fc
+
+! green
+*.color2:       #2e3045
+*.color10:      #fe947b
+
+! yellow
+*.color3:       #444763
+*.color11:      #ef8f79
+
+! blue
+*.color4:       #60648a
+*.color12:      #eeb1dd
+
+! magenta
+*.color5:       #8588a7
+*.color13:      #8f9cfa
+
+! cyan
+*.color6:       #b0b2c6
+*.color14:      #3edae6
+
+! white
+*.color7:       #e1e2e9
+*.color15:      #3fd3df
