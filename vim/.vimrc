@@ -5,17 +5,6 @@
 "              If you're a more advanced user, building your own .vimrc based
 "              on this file is still a good idea.
 "
-" Plugins
-call plug#begin('~/.vim/plugged')
-
-    Plug 'dylanaraps/wal.vim'
-
-    colorscheme wal
-
- " Initialize plugin system
-call plug#end()
-
- 
 "------------------------------------------------------------
 " Features {{{1
 "

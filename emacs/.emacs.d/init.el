@@ -9,7 +9,8 @@
        (proto (if no-ssl "http" "https")))
 
   ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t))
+  ;; (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+    (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t))
 
 ;; Javascript and React (js2-mode and rsjx-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -88,10 +89,14 @@
 
 ;;;; "Requires" and some other stuff
 
-;; Setting slime repl program (sbcl)
+(global-company-mode)
+
+;; Setting slime repl program (sbcl) and Quicklisp stuff
 (require 'slime-autoloads)
 (setq inferior-lisp-program "/usr/bin/sbcl"
       slime-contribs '(slime-fancy))
+(slime-setup '(slime-company))
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
 
 ;; Helm
 (require 'helm-config)

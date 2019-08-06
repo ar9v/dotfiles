@@ -3,37 +3,10 @@
 
 (in-package :stumpwm)
 (require :swank)
-(set-module-dir "/home/argv/.stumpwm.d/mods/")
+(set-module-dir "/home/niyx/.stumpwm.d/mods/")
 
 ;; Most of my definitiones are withing :stumpwm, so might as well
 (setf *default-package* :stumpwm)
-
-;; Modeline and message colors
-(setf *mode-line-background-color* "black")
-(setf *mode-line-foreground-color* "DimGray")
-(set-bg-color "black")
-(set-fg-color "gray")
-
-;; Font and X things
-(set-font "-uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1")
-(run-shell-command "xsetroot -cursor_name left_ptr")
-(run-shell-command "xrdb -merge ~/.Xresources")
-(run-shell-command "feh --bg-fill ~/Pictures/Untitled.png")
-(run-shell-command "compton &")
-
-;; Initialization
-(cond (*initializing*
-       ;; Swank Magic
-       (swank-loader:init)
-       (swank:create-server :port 4005
-			    :style swank:*communication-style*
-			    :dont-close t)
-       ;; Activate the mode-line
-       ;; Make the mode-line appear at the bottom
-       (setf *mode-line-position* :bottom)
-       (setf *mode-line-timeout* 1)
-       (run-commands "mode-line"))
-      (t nil))
 
 ;; Load modules
 (map nil #'load-module '("battery-portable"
@@ -44,7 +17,35 @@
 			 "wifi"
 			 "kbd-layouts"
 			 "amixer"
-			 :stumpwm-base16))
+			 "ttf-fonts"))
+;;			 :stumpwm-base16))
+
+;; Modeline and message colors
+(setf *mode-line-background-color* "black")
+(setf *mode-line-foreground-color* "white")
+(set-bg-color "black")
+(set-fg-color "white")
+
+;; Font and X things
+(set-font (make-instance 'xft:font :family "Iosevka" :subfamily "Regular" :size 11))
+(run-shell-command "xsetroot -cursor_name left_ptr")
+(run-shell-command "xrdb -merge ~/.Xresources")
+(run-shell-command "feh --bg-fill ~/Pictures/Untitled.png")
+(run-shell-command "compton &")
+
+;; Initialization
+(cond (*initializing*
+       ;; Swank Magic
+       (swank-loader:init)
+       (swank:create-server :port 4004
+			    :style swank:*communication-style*
+			    :dont-close t)
+       ;; Activate the mode-line
+       ;; Make the mode-line appear at the bottom
+       (setf *mode-line-position* :bottom)
+       (setf *mode-line-timeout* 1)
+       (run-commands "mode-line"))
+      (t nil))
 
 ;; Keyboard layouts and switch bind
 (kbd-layouts:keyboard-layout-list "us" "latam")
@@ -87,6 +88,9 @@
        (run-shell-command (concat "i3exit " (car cmd)))))
 
 (define-key *root-map* (kbd "C-s") "power-mode")
+
+;; Frame movement
+(define-key *root-map* (kbd "o") "fnext")
 
 ;; Volume Control
 (define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Master-1-")

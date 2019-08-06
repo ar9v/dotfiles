@@ -1,58 +1,63 @@
-!!! URXVT stuff
+!! URxvt stuff
+!!!! Perl scripts
+!!!!!! Keyboard Select
+URxvt.perl-ext-common: keyboard-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keyboard-select.clipboard: true
 
-Urxvt.vt100.translations: #override \n\
-  Ctrl <Key> minus: smaller-vt-font() \n\
-  Ctrl <Key> plus: larger-vt-font()
+!!!! Font
+URxvt.font: xft:Iosevka
 
-
-! Font. Oh, and also disable nasty bold fonts pls. 
-URxvt.font: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
-URxvt.boldFont: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
-
+!! Aesthetics
 URxvt.scrollBar: false
 URxvt.fading: 30
 
-! Emacs
-emacs.font: -uw-*-medium-r-*-*-12-*-*-*-*-*-iso10646-1 
+!------------------------------------------------------------------------------!
+
+!! Emacs
+emacs.font: Iosevka
 emacs.toolBar: off
 emacs.menuBar: off
-emacs.Foreground:   #cacbd9
-emacs.Background:   #0c0e16
-emacs.cursorColor:  #cacbd9
+emacs.Foreground:  #c5c8c6 
+emacs.Background:  #1d1f21 
+emacs.cursorColor: #c5c8c6 
 
-! special
-*.foreground:   #cacbd9
-*.background:   #0c0e16
-*.cursorColor:  #cacbd9
+!------------------------------------------------------------------------------!
 
-! black
-*.color0:       #151723
-*.color8:       #e5dc11
+!! General X stuff
+!!!! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
 
-! red
-*.color1:       #1e1f2e
-*.color9:       #cdd2fc
+!!!! black
+*.color0:       #282a2e
+*.color8:       #373b41
 
-! green
-*.color2:       #2e3045
-*.color10:      #fe947b
+!!!! red
+*.color1:       #a54242
+*.color9:       #cc6666
 
-! yellow
-*.color3:       #444763
-*.color11:      #ef8f79
+!!!! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
 
-! blue
-*.color4:       #60648a
-*.color12:      #eeb1dd
+!!!! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
 
-! magenta
-*.color5:       #8588a7
-*.color13:      #8f9cfa
+!!!! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
 
-! cyan
-*.color6:       #b0b2c6
-*.color14:      #3edae6
+!!!! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
 
-! white
-*.color7:       #e1e2e9
-*.color15:      #3fd3df
+!!!! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+!!!! white
+*.color7:       #707880
+*.color15:      #c5c8c6

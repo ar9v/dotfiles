@@ -129,6 +129,7 @@ if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
 
+#### PATH Magic
 ## set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -136,10 +137,10 @@ fi
 
 ## rbenv setup (path and init for shell integration)
 export PATH="$PATH:/home/argv/.rbenv/bin"
-eval "$(rbenv init -)"
-
-# Make command line editing vi mode
-# set -o vi
+if [ -d ~/home/argv/.rbenv/bin ]
+then
+    eval "$(rbenv init -)"
+fi
 
 ## ENVIRONMENT VARIABLES
 
@@ -178,7 +179,7 @@ function ranger-cd {
 bind '"\C-o":"ranger-cd\C-m"'
 
 # INFOPATH
-export INFOPATH="/usr/share/info"
+export INFOPATH="/usr/share/info:/usr/local/share/info"
 
 # Base16 Shell
 BASE16_SHELL="$HOME/installs/base16-shell/"
