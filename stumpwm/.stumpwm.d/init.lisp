@@ -20,18 +20,14 @@
 			 "ttf-fonts"))
 ;;			 :stumpwm-base16))
 
-;; Modeline and message colors
+;; ;; Modeline and message colors
 (setf *mode-line-background-color* "black")
 (setf *mode-line-foreground-color* "white")
 (set-bg-color "black")
 (set-fg-color "white")
 
-;; Font and X things
+;; Font
 (set-font (make-instance 'xft:font :family "Iosevka" :subfamily "Regular" :size 11))
-(run-shell-command "xsetroot -cursor_name left_ptr")
-(run-shell-command "xrdb -merge ~/.Xresources")
-(run-shell-command "feh --bg-fill ~/Pictures/Untitled.png")
-(run-shell-command "compton &")
 
 ;; Initialization
 (cond (*initializing*
@@ -42,6 +38,7 @@
 			    :dont-close t)
        ;; Activate the mode-line
        ;; Make the mode-line appear at the bottom
+       ;; Make Stumpwm reserve space for polybar in the bottom of the frame
        (setf *mode-line-position* :bottom)
        (setf *mode-line-timeout* 1)
        (run-commands "mode-line"))
