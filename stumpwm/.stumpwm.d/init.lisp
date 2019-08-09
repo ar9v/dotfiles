@@ -18,9 +18,8 @@
 			 "kbd-layouts"
 			 "amixer"
 			 "ttf-fonts"))
-;;			 :stumpwm-base16))
 
-;; ;; Modeline and message colors
+;; Modeline and message colors
 (setf *mode-line-background-color* "black")
 (setf *mode-line-foreground-color* "white")
 (set-bg-color "black")
@@ -38,18 +37,19 @@
 			    :dont-close t)
        ;; Activate the mode-line
        ;; Make the mode-line appear at the bottom
-       ;; Make Stumpwm reserve space for polybar in the bottom of the frame
+       ;; To be able to use polybar, I had to hack mode-line.lisp by changing "update-mode-line-position"
        (setf *mode-line-position* :bottom)
        (setf *mode-line-timeout* 1)
-       (run-commands "mode-line"))
+       (run-shell-command "polybar -r example"))
       (t nil))
 
 ;; Keyboard layouts and switch bind
 (kbd-layouts:keyboard-layout-list "us" "latam")
+(run-shell-command "xmodmap ~/.Xmodmap")
 (define-key *root-map* (kbd "s-SPC") "switch-keyboard-layout")
 
-;; New startup message
-(setf *startup-message* "Welcome, niyx")
+;; Remove startup message
+(setf *startup-message* nil)
 
 ;; Ignore duplicates in command/eval history
 (setf *input-history-ignore-duplicates* t)
@@ -104,10 +104,16 @@
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "run-shell-command xbacklight -inc 5%")
 (define-key *top-map* (kbd "XF86MonBrightnessDown") "run-shell-command xbacklight -dec 5%")
 
-;; Window programming
+;; Refresh mode-line (for polybar customization purposes)
+(define-key *root-map* (kbd "_") "mode-line")
+
+;;;; Window programming
+
+;; Keybindings
 (define-key *root-map* (kbd "C-TAB") "pull-hidden-next")
 (define-key *root-map* (kbd "q") "remove-split")
 
+;; Programming workflows
 (defparameter *workflow-execs* (list (cons '|react-work| '("emacs" "firefox" "urxvt" "zathura"))
 				     (cons '|Default| '())))
 
