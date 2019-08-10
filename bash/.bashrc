@@ -136,8 +136,8 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 ## rbenv setup (path and init for shell integration)
-export PATH="$PATH:/home/argv/.rbenv/bin"
-if [ -d ~/home/argv/.rbenv/bin ]
+export PATH="$PATH:/home/niyx/.rbenv/bin"
+if [ -d ~/.rbenv/bin ]
 then
     eval "$(rbenv init -)"
 fi
