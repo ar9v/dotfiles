@@ -53,16 +53,16 @@ line-size = 3
 line-color = #fff
 border-size = 0
 border-color = #00000000
-padding-left = 2
+padding-left = 1
 padding-right = 2
-module-margin-left = 1
+module-margin-left = 2
 module-margin-right = 2
-font-0 = Iosevka:pixelsize=12:style=Light
-;font-0 = Unifont:fontformat=truetype:size=10:antialias=false;0
+font-0 = Iosevka:pixelsize=12:style=Light;1
+font-1 = FontAwesome:size=15;2
 ;font-0 = siji:pixelsize=10;1
-modules-center =
-modules-left = xwindow 
-modules-right = xbacklight pulseaudio filesystem memory cpu battery temperature date wlan
+modules-left = xworkspaces
+modules-center = 
+modules-right = filesystem memory cpu battery temperature date wlan
 tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
@@ -79,6 +79,42 @@ label = %title:0:20%
 label-foreground = ${colors.foreground}
 label-empty = " "
 label-empty-foreground = ${colors.magenta-1}
+
+[module/xworkspaces]
+type = internal/xworkspaces
+pin-workspaces = true
+enable-click = false
+enable-scroll = false
+format = <label-state>
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-active = "%icon%   "
+label-active-foreground = ${colors.white-2}
+label-active-background = ${colors.background}
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-urgent = "%icon%   "
+label-urgent-foreground = ${colors.red-2}
+label-urgent-background = ${colors.background}
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-empty = "%icon%   "
+label-empty-foreground = #55
+icon-0 = Default;
+icon-1 = Web;
+icon-2 = Reading;
+icon-3 = Random;
 
 [module/filesystem]
 type = internal/fs
@@ -110,7 +146,7 @@ interval = 2
 format-prefix = "CPU: "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.blue-1}
-label = %percentage:2%%
+label = %percentage:3:3%%
 
 [module/memory]
 type = internal/memory
@@ -118,25 +154,25 @@ interval = 2
 format-prefix = "RAM: "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.red-1}
-label = %percentage_used%%
+label = %percentage_used:3:3%%
 
 [module/wlan]
 type = internal/network
 interface = wlp61s0
-interval = 3.0
+interval = 1
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = ${colors.green-2}
-label-connected = "%essid:%"
+label-connected = %essid%
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${colors.red-2}
 label-disconnected = Disconnected
 label-disconnected-foreground = ${colors.foreground}
-ramp-signal-0 = "▁ "
-ramp-signal-1 = "▂ "
-ramp-signal-2 = "▃ "
-ramp-signal-3 = "▄ "
-ramp-signal-4 = "▅ "
-ramp-signal-5 = "▆ "
+ramp-signal-0 = ▁
+ramp-signal-1 = ▂
+ramp-signal-2 = ▃
+ramp-signal-3 = ▄
+ramp-signal-4 = ▅
+ramp-signal-5 = ▆
 ramp-signal-foreground = ${colors.green-2}
 
 [module/eth]

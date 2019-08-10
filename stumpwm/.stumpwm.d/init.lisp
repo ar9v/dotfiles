@@ -35,6 +35,12 @@
        (swank:create-server :port 4004
 			    :style swank:*communication-style*
 			    :dont-close t)
+       
+       ;; Groups
+       ;;;; Create the groups needed to match up with the polybar config
+       (dolist (x '("Web" "Reading" "Random"))
+	 (run-commands (concat "gnewbg " x)))
+
        ;; Activate the mode-line
        ;; Make the mode-line appear at the bottom
        ;; To be able to use polybar, I had to hack mode-line.lisp by changing "update-mode-line-position"
@@ -56,11 +62,6 @@
 
 ;; Change naming source (C-t ') to class instead of title
 (setf *window-name-source* :class)
-
-;; Change terminal to urxvt
-(map 'list (lambda (x)
-	     (define-key *root-map* x "exec urxvt"))
-     (list (kbd "C-c") (kbd "c")))
 
 ;; Modeline customization
 (setf *screen-mode-line-format* (list "^B%n^b | "
@@ -88,17 +89,32 @@
 
 ;; Frame movement
 (define-key *root-map* (kbd "o") "fnext")
+(define-key *top-map* (kbd "s-h") "move-focus left")
+(define-key *top-map* (kbd "s-j") "move-focus down")
+(define-key *top-map* (kbd "s-k") "move-focus up")
+(define-key *top-map* (kbd "s-l") "move-focus right")
 
 ;; Volume Control
 (define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Master-1-")
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-1+")
 (define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle")
 
-;; Browser keybinding
+;; Keybindings for main programs
 (defcommand firefox () ()
 	    (run-or-raise "firefox" '(:class "Firefox")))
 
+(defcommand urxvt () ()
+	    (run-or-raise "urxvt" '(:class "URxvt")))
+
+;;;; Cycle through the open instances
+;;;; (Emacs already does this)
 (define-key *root-map* (kbd "C-q") "firefox")
+(define-key *root-map* (kbd "C-c") "urxvt")
+
+;;;; Open new instances
+(define-key *root-map* (kbd "C-Q") "exec firefox")
+(define-key *root-map* (kbd "C-C") "exec urxvt")
+(define-key *root-map* (kbd "C-E") "exec emacs")
 
 ;; Backlight keybindings
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "run-shell-command xbacklight -inc 5%")
