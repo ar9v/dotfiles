@@ -16,9 +16,28 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH:/opt/mssql-tools/bin"
-PATH="$PATH:/opt/ghc/bin"
+# PATH setup
+## set PATH so it includes user's private bin if it exists
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+PATH="$PATH:/home/niyx/.emacs.d/bin/"
+
+## rbenv setup (path and init for shell integration)
+export PATH="$PATH:/home/niyx/.rbenv/bin"
+if [ -d ~/.rbenv/bin ]
+then
+    eval "$(rbenv init -)"
+fi
+
+## Yarn setup
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+## ENVIRONMENT VARIABLES
+
+# Sets my EDITOR variable so as to use Emacs
+export EDITOR='/usr/bin/emacs'
+
+# New PS1 variable
+export PS1=$'\[\033[0;36m\]\u\[\033[0;37m\]@\[\033[1;31m\]\h \[\033[1;32m\]\W \[\e[1;34m\]\u03bb \[\033[0m\]'
 
 # run program to manage sessions
 # session-choose

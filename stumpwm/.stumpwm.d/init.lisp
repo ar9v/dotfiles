@@ -10,14 +10,15 @@
 
 ;; Load modules
 (map nil #'load-module '("battery-portable"
-			 "cpu"
-			 "disk"
-			 "mem"
-			 "net"
-			 "wifi"
-			 "kbd-layouts"
-			 "amixer"
-			 "ttf-fonts"))
+                         "cpu"
+                         "disk"
+                         "mem"
+                         "net"
+                         "wifi"
+                         "kbd-layouts"
+                         "amixer"
+                         "ttf-fonts"
+                         "swm-gaps"))
 
 ;; Modeline and message colors
 (setf *mode-line-background-color* "black")
@@ -33,20 +34,21 @@
        ;; Swank Magic
        (swank-loader:init)
        (swank:create-server :port 4004
-			    :style swank:*communication-style*
-			    :dont-close t)
+                            :style swank:*communication-style*
+                            :dont-close t)
        
        ;; Groups
        ;;;; Create the groups needed to match up with the polybar config
-       (dolist (x '("Web" "Reading" "Random"))
-	 (run-commands (concat "gnewbg " x)))
+       (run-commands "grename term") ;; Default -> term
+       (dolist (x '("web" "reading" "random"))
+         (run-commands (concat "gnewbg " x)))
 
        ;; Activate the mode-line
        ;; Make the mode-line appear at the bottom
        ;; To be able to use polybar, I had to hack mode-line.lisp by changing "update-mode-line-position"
        (setf *mode-line-position* :bottom)
        (setf *mode-line-timeout* 1)
-       (run-shell-command "polybar -r example"))
+       (run-shell-command "launch-poly.sh"))
       (t nil))
 
 ;; Keyboard layouts and switch bind
@@ -54,7 +56,7 @@
 (run-shell-command "xmodmap ~/.Xmodmap")
 (define-key *root-map* (kbd "s-SPC") "switch-keyboard-layout")
 
-;; Remove startup message
+;; Remove startup message and frame indicator
 (setf *startup-message* nil)
 
 ;; Ignore duplicates in command/eval history
@@ -65,13 +67,13 @@
 
 ;; Modeline customization
 (setf *screen-mode-line-format* (list "^B%n^b | "
-				      "%W ^> | "
-				      "%C | "
-				      "%M | "
-				      "%B | "
-				      "%D | "
-				      "%d | "
-				      "%I "))
+                                      "%W ^> | "
+                                      "%C | "
+                                      "%M | "
+                                      "%B | "
+                                      "%D | "
+                                      "%d | "
+                                      "%I "))
 
 ;; Start window numbering from 1. Gets funky with more than 9 windows in a group
 (setq *window-number-map* "1234567890")
@@ -125,30 +127,33 @@
 
 ;;;; Window programming
 
+;; swm-gaps configuration
+(run-commands "toggle-gaps")
+
 ;; Keybindings
 (define-key *root-map* (kbd "C-TAB") "pull-hidden-next")
 (define-key *root-map* (kbd "q") "remove-split")
 
 ;; Programming workflows
 (defparameter *workflow-execs* (list (cons '|react-work| '("emacs" "firefox" "urxvt" "zathura"))
-				     (cons '|Default| '())))
+                                     (cons '|Default| '())))
 
 (defun load-flow (group)
   (let ((path (concat "~/.stumpwm.d/" group)))
         (restore-from-file (concat path ".rule"))
-	(restore-window-placement-rules (concat path ".window"))))
+    (restore-window-placement-rules (concat path ".window"))))
 
 (defun run-flow (flow-progs)
   (mapcar #'run-shell-command (cdr flow-progs)))
 
 (defcommand workflow () ()
-	    (clear-window-placement-rules)
-	    (let ((flow (car (select-from-menu (current-screen)
-					       '(("Default") ("react-work"))
-					       "Workflow: "))))
-	      ;; (select-from-menu) returns a singleton whose element is the string needed
-	      (run-commands (concat "grename " flow))
-	      (cond ((string-equal flow "Default") nil)
-		    (t (load-flow flow) (run-flow (assoc (intern flow) *workflow-execs*))))))
+  (clear-window-placement-rules)
+  (let ((flow (car (select-from-menu (current-screen)
+                                     '(("Default") ("react-work"))
+                                     "Workflow: "))))
+    ;; (select-from-menu) returns a singleton whose element is the string needed
+    (run-commands (concat "grename " flow))
+    (cond ((string-equal flow "Default") nil)
+          (t (load-flow flow) (run-flow (assoc (intern flow) *workflow-execs*))))))
 
 (define-key *root-map* (kbd "z") "workflow")

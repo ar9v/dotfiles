@@ -125,31 +125,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -x /usr/bin/mint-fortune ]; then
-     /usr/bin/mint-fortune
-fi
-
-#### PATH Magic
-## set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-## rbenv setup (path and init for shell integration)
-export PATH="$PATH:/home/niyx/.rbenv/bin"
-if [ -d ~/.rbenv/bin ]
-then
-    eval "$(rbenv init -)"
-fi
-
-## ENVIRONMENT VARIABLES
-
-# Sets my EDITOR variable so as to use Emacs
-export EDITOR='/usr/bin/emacs'
-
-# New PS1 variable
-export PS1=$'\[\033[0;36m\]\u\[\033[0;37m\]@\[\033[1;31m\]\h \[\033[1;32m\]\W \[\e[1;34m\]\u03bb \[\033[0m\]'
-
 ## Enables full 256 color support
 [[ -n "$DISPLAY" && "$TERM" = "xterm" ]] && export TERM="xterm-256color"
 
@@ -166,7 +141,6 @@ MAIL=/var/spool/mail/argv && export MAIL
 # Function for ranger to automatically change directory when it is quit
 function ranger-cd {
     tempfile="$(mktemp -t tmp.XXXXXX)"
-    #/usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
     $(which ranger) --choosedir="$tempfile" "${@:-$(pwd)}"
     test -f "$tempfile" &&
     if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
