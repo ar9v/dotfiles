@@ -36,9 +36,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # Sets my EDITOR variable so as to use Emacs
 export EDITOR='/usr/bin/emacs'
 
-# New PS1 variable
-export PS1=$'\[\033[0;36m\]\u\[\033[0;37m\]@\[\033[1;31m\]\h \[\033[1;32m\]\W \[\e[1;34m\]\u03bb \[\033[0m\]'
-
 # run program to manage sessions
 # session-choose
 startx
