@@ -3,6 +3,7 @@
 
 (in-package :stumpwm)
 (require :swank)
+(require :slynk)
 (set-module-dir "/home/niyx/.stumpwm.d/mods/")
 
 ;; Most of my definitiones are withing :stumpwm, so might as well
@@ -29,6 +30,9 @@
 ;; Font
 (set-font (make-instance 'xft:font :family "Iosevka" :subfamily "Regular" :size 11))
 
+;; Outline modification
+(set-frame-outline-width 0)
+
 ;; Initialization
 (cond (*initializing*
        ;; Swank Magic
@@ -36,7 +40,10 @@
        (swank:create-server :port 4004
                             :style swank:*communication-style*
                             :dont-close t)
-       
+
+       ;; Slynk server
+       (slynk:create-server :port 4008 :dont-close t)
+
        ;; Groups
        ;;;; Create the groups needed to match up with the polybar config
        (run-commands "grename term") ;; Default -> term
