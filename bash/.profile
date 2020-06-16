@@ -17,24 +17,35 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # PATH setup
+## Android Studio
+PATH="$PATH:$HOME/installs/android-studio/bin"
+
+## ADB setup
+PATH="$PATH:/home/niyx/Android/Sdk/platform-tools/"
+
 ## set PATH so it includes user's private bin if it exists
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 PATH="$PATH:/home/niyx/.emacs.d/bin/"
 
-## rbenv setup (path and init for shell integration)
-export PATH="$PATH:/home/niyx/.rbenv/bin"
-if [ -d ~/.rbenv/bin ]
-then
-    eval "$(rbenv init -)"
-fi
+## INFOPATH
+export INFOPATH="/usr/share/info:/usr/local/share/info"
 
-## Yarn setup
+## Base16 Shell
+BASE16_SHELL="$HOME/installs/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+## Yarn PATH setup
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-## ENVIRONMENT VARIABLES
+# ENVIRONMENT VARIABLES
 
-# Sets my EDITOR variable so as to use Emacs
+## Sets my EDITOR variable so as to use Emacs
 export EDITOR='/usr/bin/emacs'
+
+## NVM (Node Version Manager setup)
+export NVM_DIR="$HOME/.nvm"
 
 # run program to manage sessions
 # session-choose

@@ -1,0 +1,82 @@
+#+TITLE: Global Todo/Reading List
+
+* Algorithms and Data Structures
+** Purely Functional Data Structures (Okasaki)
+** Programming Algorithms with CL (Domkin)
+** The Algorithm Design Manual (Skiena)
+** Competitive Programmer's Handbook
+* Artificial Intelligence
+** PAIP
+** AI a modern approach (Norvig)
+** NLP in Lisp
+** AI with Prolog
+* Blog
+** Clojurescript
+* Compilers
+* Emacs
+** Elisp Reference
+** Elisp Koans
+** Emacs Manual
+* Fun and Games
+** Tidal Cycles Haskell
+** Stardew Valley
+** Libro de Dibujo
+* Haskell
+** Haskell Programming from First Principles
+** Thinking Functionally with Haskell
+* Linux
+** Ricing
+*** Lepisma Org Config
+** Sysadmin
+*** Unix and Linux System Administration Handbook
+** Shell
+*** Fish Shell
+** Wisdom
+*** The Art of Unix Programming
+** Dotfile management
+* Lisp
+** Structure and Interpretation of Computer Programs
+** How to Design Programs
+** The Little Schemer
+** The Seasoned Schemer
+** The Reasoned Schemer
+
+* Literature
+* Math
+** All of Statistics
+** Lehmann Algebra
+** Calculus (Spivak)
+** Mathematics: Its Content, Methods and Meaning
+* Music
+** Mickey Baker
+** Jazzology
+** The Jazz Theory Book (Levine)
+* Personal Projects
+** Axolotl
+** CV ricing
+** David Python Mail Parsing
+** Instalar Linux a Hirshell
+** Telos
+** Wiki
+* Pedagogy
+* Philosophy
+* Physics
+** Structure and Interpretation of Classical Mechanics
+* Prolog
+** The Art of Prolog
+* Programming Languages
+** Programming Language Foundations in Agda
+** The Little Typer
+* School
+** Musica
+*** Proyecto Musica
+** Seguridad
+*** In class activity 7
+*** Cryptography Exam
+** Metodos
+*** Proyecto Metodos
+** Moviles
+*** Proyecto Moviles
+** Web
+*** Proyecto Web
+* Web Dev

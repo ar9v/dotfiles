@@ -135,11 +135,8 @@ function ranger-cd {
 # This binds Ctrl-0 to ranger-cd:
 bind '"\C-o":"ranger-cd\C-m"'
 
-# INFOPATH
-export INFOPATH="/usr/share/info:/usr/local/share/info"
+# This sources the nvm (Node Version Manager) shell script
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  --no-use # This loads nvm
+[[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion
 
-# Base16 Shell
-BASE16_SHELL="$HOME/installs/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

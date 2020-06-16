@@ -44,11 +44,16 @@
        ;; Slynk server
        (slynk:create-server :port 4008 :dont-close t)
 
+       ;; Emacs Daemon
+       (run-shell-command "emacs --daemon")
+
        ;; Groups
        ;;;; Create the groups needed to match up with the polybar config
        (run-commands "grename term") ;; Default -> term
-       (dolist (x '("web" "reading" "random"))
+       (dolist (x '("web" "reading"))
          (run-commands (concat "gnewbg " x)))
+
+       (run-commands "gnewbg-float random")
 
        ;; Activate the mode-line
        ;; Make the mode-line appear at the bottom
@@ -115,15 +120,19 @@
 (defcommand urxvt () ()
 	    (run-or-raise "urxvt" '(:class "URxvt")))
 
+(defcommand emacsclient () ()
+  (run-or-raise "emacsclient -c" '(:class "Emacs")))
+
 ;;;; Cycle through the open instances
 ;;;; (Emacs already does this)
 (define-key *root-map* (kbd "C-q") "firefox")
 (define-key *root-map* (kbd "C-c") "urxvt")
+(define-key *root-map* (kbd "C-e") "emacsclient")
 
 ;;;; Open new instances
 (define-key *root-map* (kbd "C-Q") "exec firefox")
 (define-key *root-map* (kbd "C-C") "exec urxvt")
-(define-key *root-map* (kbd "C-E") "exec emacs")
+(define-key *root-map* (kbd "C-E") "exec emacsclient -c")
 
 ;; Backlight keybindings
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "run-shell-command xbacklight -inc 5%")
@@ -132,35 +141,29 @@
 ;; Refresh mode-line (for polybar customization purposes)
 (define-key *root-map* (kbd "_") "mode-line")
 
+;; Flameshot control
+(define-key *top-map* (kbd "Print") "run-shell-command flameshot gui")
+(define-key *top-map* (kbd "C-Print") "run-shell-command pkill flameshot")
+
 ;;;; Window programming
 
 ;; swm-gaps configuration
-(run-commands "toggle-gaps")
+;; (run-commands "toggle-gaps")
 
 ;; Keybindings
 (define-key *root-map* (kbd "C-TAB") "pull-hidden-next")
 (define-key *root-map* (kbd "q") "remove-split")
 
-;; Programming workflows
-(defparameter *workflow-execs* (list (cons '|react-work| '("emacs" "firefox" "urxvt" "zathura"))
-                                     (cons '|Default| '())))
+;;;; Commands for programs that must be opened with floating windows
 
-(defun load-flow (group)
-  (let ((path (concat "~/.stumpwm.d/" group)))
-        (restore-from-file (concat path ".rule"))
-    (restore-window-placement-rules (concat path ".window"))))
+;; Open Android Studio
+(defcommand android-studio () ()
+  "Start Android Studio in the random group (floating group)"
+  (run-commands "gselect random")
+  (run-shell-command "studio.sh" nil))
 
-(defun run-flow (flow-progs)
-  (mapcar #'run-shell-command (cdr flow-progs)))
-
-(defcommand workflow () ()
-  (clear-window-placement-rules)
-  (let ((flow (car (select-from-menu (current-screen)
-                                     '(("Default") ("react-work"))
-                                     "Workflow: "))))
-    ;; (select-from-menu) returns a singleton whose element is the string needed
-    (run-commands (concat "grename " flow))
-    (cond ((string-equal flow "Default") nil)
-          (t (load-flow flow) (run-flow (assoc (intern flow) *workflow-execs*))))))
-
-(define-key *root-map* (kbd "z") "workflow")
+;; Open Zoom
+(defcommand zoom () ()
+  "Start Zoom in the random group (floating group)"
+  (run-commands "gselect random")
+  (run-shell-command "zoom" nil))
