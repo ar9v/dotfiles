@@ -25,6 +25,9 @@ emacs.cursorColor: #c5c8c6
 !------------------------------------------------------------------------------!
 
 !! General X stuff
+!!!! Cursor
+Xcursor.theme: Bibata_Oil
+
 !!!! special
 *.foreground:   #c5c8c6
 *.background:   #1d1f21

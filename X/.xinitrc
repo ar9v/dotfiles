@@ -1,6 +1,6 @@
 #!/bin/bash
 
-xmodmap .xmodmap
+xmodmap .Xmodmap
 sh ~/.fehbg &
 xsetroot -cursor_name left_ptr
 xrdb -merge .Xresources
