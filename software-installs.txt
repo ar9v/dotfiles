@@ -1,0 +1,105 @@
+SYSTEM HARDWARE UTILS
+- acpi
+- firmware-iwlwifi
+	can be added in live usb in a different partition. check the debian manual.
+- firmware-misc-nonfree
+- Configure grub:
+	turn off acpi or whatever
+	turn off countdown? 
+	overall, try to make it fast
+- tlp
+- thermald
+- lspci
+- lsblk
+- lsusb
+- lm_sensors
+
+
+SYSADMIN
+- sudo
+	then do adduser <user> sudo. Must reboot, or log out and in.
+- network-manager
+- htop
+- curl, wget
+
+BUILD
+- build-essentials
+
+EDITORS
+- vim
+- emacs
+- doom emacs
+    - install ripgrep
+    - install fd-find
+    - install clang
+
+
+DOTFILE MANAGEMENT
+- git
+- gnu stow (for dotfiles)
+
+
+HELP
+- info
+
+
+TERMINAL EMULATORS
+- alacritty (?)
+- urxvt (rxvt-unicode256)
+
+SHELLS (?)
+- fish
+
+GUI and UTILS
+- sbcl
+    preferrably build sbcl versus using apt
+- quicklisp
+- swank / slynk
+    (e.g. (ql:quickload :slynk)
+- stumpwm
+- clx, sly/swank and other stump dependencies
+	cl-clx-sbcl (apt)
+    using ql:
+        - curl -O https://beta.quicklisp.org/quicklisp.lisp
+        - sbcl --load quicklisp.lisp
+        - (in sbcl) * (quicklisp-quickstart:install)
+        - (ql:add-to-init-file)
+        - Then, in a repl:
+            - (ql:quickload "clx")
+            - (ql:quickload "cl-ppcre")
+            - (ql: quickload "alexandria")
+- stumpwm-contrib modules
+
+- zathura
+- polybar
+    sudo apt install -t buster-backports install polybar
+- firefox
+- light/xbacklight
+    light must be setuid (chmod u+s $(which light)) which may be a _bit_ insecure....
+- pavucontrol, alsamixer/amixer
+- ranger
+- compton / picom
+- jq
+
+
+X
+- X server duh
+	xorg
+- Xmodmap
+- xrandr, arandr
+- xdpyinfo (Xinerama support)
+- Iosevka font
+    put in fonts directory, run fc-cache
+    e.g. 
+    - extract the ioseveka zip
+    - mv ttf iosevka
+    - sudo cp -r iosevka/ /usr/share/fonts/truetype
+- Font Awesome (for polybar icons)
+    - fonts-font-awesome
+- Some cursor theme
+- rofi
+
+TODO:
+- change cursor
+- configure rofi
+- 

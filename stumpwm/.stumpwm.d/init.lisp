@@ -2,34 +2,40 @@
 ;; My own stumpwmrc
 
 (in-package :stumpwm)
-;; (require :swank)
-;; (require :slynk)
+(require :slynk)
 
-;; Most of my definitiones are withing :stumpwm, so might as well
+;; Most of my definitiones are within :stumpwm, so might as well
 (setf *default-package* :stumpwm)
 
-;; Font
-;;(set-font (make-instance 'xft:font :family "Iosevka" :subfamily "Regular" :size 11))
+;; I need to specify where the modules are
+(set-module-dir "/home/niyx/.stumpwm.d/mods/")
+
+;; Load modules
+(dolist (module (list "ttf-fonts"
+                      "windowtags"
+                      "kbd-layouts"))
+  (load-module module))
 
 ;; Outline modification
+;; Stumpwm will not delete the outline around a frame once it's lost focus
+;; As a hack, I've simply removed the outline, since I don't find it essential.
 (set-frame-outline-width 0)
+
+;; Fonts
+;; The font list cache should be refreshed with (clx-truetype:cache-fonts)
+;; TODO: Check if this set-font call is unsuccessful and refresh the cache in that case (?)
+(set-font (make-instance 'xft:font :family "Iosevka" :subfamily "Regular" :size 11))
 
 ;; Initialization
 (cond (*initializing*
-       ;; Swank Magic
-       ;; (swank-loader:init)
-       ;; (swank:create-server :port 4004
-       ;;                        :style swank:*communication-style*
-       ;;                      :dont-close t)
-
        ;; Slynk server
-       ;;(slynk:create-server :port 4008 :dont-close t)
+       (slynk:create-server :port 4008 :dont-close t)
 
        ;; Emacs Daemon
        (run-shell-command "emacs --daemon")
 
        ;; Groups
-       ;;;; Create the groups needed to match up with the polybar config
+       ;;;; Create the groups needed to match up with the xworkspaces polybar config
        (run-commands "grename term") ;; Default -> term
        (dolist (x '("web" "reading"))
          (run-commands (concat "gnewbg " x)))
@@ -40,17 +46,19 @@
        (setf *mode-line-timeout* 1)
        (run-shell-command "launch-poly.sh")
 
-      ;; God knows why but StumpWM does not handle dual-monitor polybars so.. time to hack
-      (let ((heads (screen-heads (current-screen))))
-	(dolist (head heads)
-	  (let ((nh (make-head :number 0 ;; number doesn't matter for scaling
-			       :x (head-x head) :y (head-y head)
-			       :width (head-width head)
-			       :height (- (head-height head) 30) ;; We make the head vertically smaller to fit polybar
-			       :window nil)))
-	    (scale-head (current-screen)
-			head
-			nh)))))
+       ;; God knows why but StumpWM does not handle dual-monitor polybars so.. time to hack
+       ;; Do note that this must be changed. Changes that fire XrandR (e.g. disconnecting the monitor)
+       ;; will invariably revert this resizing
+       (let ((heads (screen-heads (current-screen))))
+         (dolist (head heads)
+           (let ((nh (make-head :number 0 ;; number doesn't matter for scaling
+                                :x (head-x head) :y (head-y head)
+                                :width (head-width head)
+                                :height (- (head-height head) 30) ;; We make the head vertically smaller to fit polybar
+                                :window nil)))
+             (scale-head (current-screen)
+                         head
+                         nh)))))
       (t nil))
 
 ;; Mouse focus rule
@@ -78,9 +86,9 @@
 ;; Systemctl operations (locking, poweroff, rebooting, suspending)
 (defcommand power-mode () ()
   (let ((cmd (select-from-menu (current-screen)
-			       '(("lock") ("suspend") ("shutdown") ("reboot"))
-			       "Select: ")))
-       (run-shell-command (concat "i3exit " (car cmd)))))
+                               '(("lock") ("suspend") ("shutdown") ("reboot"))
+                               "Select: ")))
+    (run-shell-command (concat "i3exit " (car cmd)))))
 
 (define-key *root-map* (kbd "C-s") "power-mode")
 
@@ -100,8 +108,8 @@
 (defcommand firefox () ()
 	    (run-or-raise "firefox" '(:class "Firefox")))
 
-(defcommand alacritty () ()
-	    (run-or-raise "alacritty" '(:class "Alacritty")))
+(defcommand terminal () ()
+	    (run-or-raise "urxvt" '(:class "URxvt")))
 
 (defcommand emacsclient () ()
   (run-or-raise "emacsclient -c" '(:class "Emacs")))
@@ -109,12 +117,12 @@
 ;;;; Cycle through the open instances
 ;;;; (Emacs already does this)
 (define-key *root-map* (kbd "C-q") "firefox")
-(define-key *root-map* (kbd "C-c") "alacritty")
+(define-key *root-map* (kbd "C-c") "terminal")
 (define-key *root-map* (kbd "C-e") "emacsclient")
 
 ;;;; Open new instances
 (define-key *root-map* (kbd "C-Q") "exec firefox")
-(define-key *root-map* (kbd "C-C") "exec alacritty")
+(define-key *root-map* (kbd "C-C") "exec urxvt")
 (define-key *root-map* (kbd "C-E") "exec emacsclient -c")
 
 ;; Backlight keybindings

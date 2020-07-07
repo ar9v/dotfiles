@@ -38,10 +38,10 @@ padding-left = 1
 padding-right = 2
 module-margin-left = 2
 module-margin-right = 2
+
+; font-N = <fontconfig pattern>;<vertical offset>
 font-0 = Iosevka:pixelsize=12:style=Light;1
-font-1 = Font Awesome 5 Free Regular:size=11
-font-2 = Font Awesome 5 Free Solid:size=11
-font-3 = Font Awesome 5 Brands:size=11
+font-1 = FontAwesome:size=11;1
 ;font-0 = siji:pixelsize=10;1
 modules-left = xworkspaces
 modules-center = 
@@ -237,7 +237,7 @@ type = internal/temperature
 ; If for some reason in future configurations the temperature module acts up
 ; it is probably due to this option. 
 ; Thermal zones can be examined under /sys/class/hwmon or /sys/class/thermal
-thermal-zone = 2
+thermal-zone = 0
 warn-temperature = 60
 format = <label>
 format-underline = ${colors.cyan-2}

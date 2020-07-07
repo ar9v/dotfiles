@@ -5,14 +5,14 @@
 
 ;; My config
 ;;;; Aesthetics
-(setq +doom-dashboard-banner-file "~/Pictures/mdh-emacs.png")
+(setq +doom-dashboard-banner-file "~/pictures/mdh-emacs.png")
 
 ;;;; Org
 (setq org-latex-pdf-process
       (list "latexmk -pdflatex='pdflatex -shell-escape -interaction nonstopmode' -pdf -f %f"))
 
 ;;;; Geiser
-(setq geiser-active-implementations (cons 'racket geiser-active-implementations))
+;;(setq geiser-active-implementations (cons 'racket geiser-active-implementations))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.

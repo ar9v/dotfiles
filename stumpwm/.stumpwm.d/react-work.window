@@ -1,4 +1,0 @@
-(("ff" 0 T T :CREATE T :CLASS "Firefox")
- ("react-work" 1 T nil :CLASS "URxvt")
- ("react-work" 2 T nil :CLASS "Zathura")
- ("react-work" 0 T T :CLASS "Emacs"))
