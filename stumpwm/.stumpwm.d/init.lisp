@@ -83,6 +83,15 @@
 
 ;;;; Keybindings
 
+;; Opening programs with rofi
+(defvar *rofi-bindings*
+  (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "RET") "run-shell-command rofi -show run")
+    (define-key m (kbd "w") "run-shell-command rofi -show window")
+    m))
+
+(define-key *root-map* (kbd "RET") '*rofi-bindings*)
+
 ;; Systemctl operations (locking, poweroff, rebooting, suspending)
 (defcommand power-mode () ()
   (let ((cmd (select-from-menu (current-screen)

@@ -80,6 +80,7 @@ GUI and UTILS
 - ranger
 - compton / picom
 - jq
+- flameshot
 
 
 X
@@ -97,9 +98,14 @@ X
 - Font Awesome (for polybar icons)
     - fonts-font-awesome
 - Some cursor theme
+    breeze-cursor-theme
+    - add .icons/default/index.theme with [icon theme] Inherits=theme-name
+    - ln -s /usr/share/icons/theme-name/cursors ~/.icons/default/cursors
 - rofi
+    papirus icon theme for rofi (apt install papirus-icon-theme)
 
 TODO:
 - change cursor
+- create dotfile dir for icons hidden dir
 - configure rofi
 - 
