@@ -23,6 +23,4 @@ export INFOPATH="/usr/share/info:/usr/local/share/info"
 export PATH="$PATH:/home/niyx/.emacs.d/bin/"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
-export XCURSOR_PATH="$XCURSOR_PATH:/home/niyx/.nix-profile/share/icons/"
-
-startx
+#startx

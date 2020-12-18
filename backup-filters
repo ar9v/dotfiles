@@ -1,5 +1,13 @@
 .*
-quicklisp/
 **.git*
+**node_modules/
+**reveal.js*
+Calibre Library/
+debs/
+Downloads/
 Music/
-dotfiles/
+Pharo/
+pharolauncher/
+quicklisp/
+Steam/
+vms/
