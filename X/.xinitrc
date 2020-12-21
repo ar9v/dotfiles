@@ -8,6 +8,6 @@ xset b off # Turns off the bell
 xsetroot -cursor_name left_ptr
 xrdb -merge .Xresources
 
-compton &
+picom &
 
-exec stumpwm
+exec i3

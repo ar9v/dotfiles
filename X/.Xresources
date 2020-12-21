@@ -6,16 +6,17 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keyboard-select.clipboard: true
 
 !!!! Font
-URxvt.font: xft:Iosevka
+URxvt.font: xft:FreeMono
 
 !! Aesthetics
 URxvt.scrollBar: false
 URxvt.fading: 30
+URxvt.boldFont: true
 
 !------------------------------------------------------------------------------!
 
 !! Emacs
-emacs.font: Iosevka
+!!emacs.font: Iosevka
 emacs.toolBar: off
 emacs.menuBar: off
 emacs.Foreground:  #c5c8c6 
