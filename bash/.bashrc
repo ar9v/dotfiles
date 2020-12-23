@@ -2,7 +2,7 @@
 PS1=$'\[\e[0;36m\]\u\[\e[0;37m\]@\[\e[1;31m\]\h \[\e[1;32m\]\W \[\e[1;34m\]\u03bb \[\e[0m\]'
 
 ## This lets me see how much charge is left each time a command is run
-export PS1="$PS1\e[0;31m\$(cat /sys/class/power_supply/BAT0/capacity)\e[0m "
+export PS1="$PS1\e[0;31m\[\$(cat /sys/class/power_supply/BAT0/capacity)\] \[\e[0m\]"
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
