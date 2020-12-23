@@ -18,4 +18,4 @@ lg = !"git lg1"
 [merge]
     tool = vimdiff3
 [credential]
-	helper = cache
+	helper = cache --timeout=3600

@@ -1,32 +1,75 @@
 #!/bin/bash
 
+function sigint () {
+	echo -e "\e[1B\e[2K"
+	p $red "Program was interrupted, exiting..."
+	exit 1
+}
+
+#### SETUP
+# Colors
+bold=$(tput bold)
+reset=$(tput sgr 0)
+green=$(tput setaf 2)
+yellow=$(tput setaf 3)
+red=$(tput setaf 1)
+
+# p: color x text x [opts] -> text
+# p color text produces a colored rendering of text and
+# resets the color after use
+p() { echo -e$3 "${bold}$1$2 $reset"; }
+
+lsblk_out=$(lsblk -do +SERIAL,LABEL,VENDOR)
+devices=($(awk 'NR > 1 && $1 != "sda" {print $1}' <<< $lsblk_out))
+upper_bound=$((${#devices[@]} - 1))
+
 cd ~
 
-# Basically: which device file corresponds to my external hard drive?
-# C4383821A0A1 is the serial number of my ADATA external hard drive
-drive_device="$(lsblk -do +SERIAL | awk '$7=="C4383821A0A1" {print $1}')"
 
-if [[ $drive_device = "" ]]
+#### DISPLAY devices AND CHOOSE
+p $green "These are the available devices:"
+echo "$lsblk_out"
+echo
+
+# We use sequence since brace expansion is done before arithmetic expansion
+p $green "Choose a device"
+for i in $(seq 0 $upper_bound)
+do
+	echo [$i] ${devices[i]}
+done
+
+# Check if it is a number and is within the array bounds
+# `read` practically always succeeds
+until read -p "Device #: " id && [[ "$id" =~ ^[0-9]+$ ]] && (( id >= 0 && id <= upper_bound ))
+do
+	trap sigint SIGINT
+	p $yellow "That is not a valid device"
+	echo -en "\e[2A\e[2K"
+done
+echo
+
+chosen=${devices[$id]}
+p $green "Chosen device: " n; echo $chosen
+echo
+
+
+#### BACKUP
+echo "Mounting $chosen on /mnt with $bold sudo mount /dev/$chosen /mnt $reset"
+sudo mount /dev/$chosen /mnt
+echo
+
+read -p "Do you want to perform a dry run? yes [Y/y] no [otherwise] " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    echo -e "External hard drive not connected. \e[1;33mAborting\e[0m"
-else
-    echo "External hard drive connected at device $drive_device"
-    sudo mount /dev/$drive_device /mnt
-
-    read -p "Do you want to perform a dry run? [Y/y] " -n 1 -r
-    echo
-    echo $REPLY
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
 	echo "Performing dry run"
 	sudo rsync -avhn --exclude-from='dotfiles/backup-filters' . /mnt/niyx/
-    else
+else
 	echo "Performing true sync"
 	sudo rsync -avh --exclude-from='dotfiles/backup-filters' . /mnt/niyx/
-    fi
-    
-    # Cleaning up...
-    # This allows us to run the script multiple times (without it, the drive is still mounted and thus will
-    # appear to not be connected when we try again)
-    sudo umount /mnt
 fi
+
+# Cleaning up...
+# This allows us to run the script multiple times (without it, the drive is still mounted and thus will
+# appear to not be connected when we try again)
+sudo umount /mnt

@@ -1,0 +1,146 @@
+#!/usr/bin/env bash
+
+## NON-A-LIBRARIAN ##################################
+#													#
+# Author: Andrés Ricardo Garza Vela (@argvniyx)		#
+#													#
+#####################################################
+
+# For testing purposes
+NAL_LIB_DIR="/home/niyx/Desktop/nal-lib/"
+
+
+# Report usage if there are no arguments called
+usage() {
+    cat <<EOF
+Non-a-librarian
+---------------
+Provide a command and appropriate subcommand.
+
+Usage: nal COMMAND SUBCOMMAND ARGUMENT
+
+EOF
+
+exit 1
+}
+
+## Existence predicates
+# filter_existsp: filter
+filter_existsp() {
+    [ -d $NAL_LIB_DIR/$1 ]
+}
+
+# entry_existsp: filter x entry
+entry_existsp() {
+    [ -d $NAL_LIB_DIR/$1/$2 ]
+}
+
+## Add a filter
+# Here, a filter is a directory by means of which we can categorize books
+# For example, a possible filter is `author`
+# nal add [filter | entry]
+
+add() {
+    case $1 in
+        filter) 
+            shift 1 
+            add_filter $@
+        ;;
+        entry)
+            shift 1
+            add_entry $@
+        ;;
+        *) echo unrecognized add command;;
+    esac
+}
+    
+add_filter() {
+    # Is there a possible char combination that could be
+    # construed as "illegal"?
+    # [[ -d $1 ]] || mkdir -p $NAL_LIB_DIR/$1
+    filter_existsp $1 || mkdir -p $NAL_LIB_DIR/$1
+}
+
+## Add a filter entry
+# This would be a possible value for the filter
+# For example, Dan Friedman could be an entry in the `author` filter (dir)
+# nal add entry <filter> <entry-name>
+# e.g. nal add entry author friedman-dan
+add_entry() {
+    if [[ -d $1 ]]
+    then
+        add_filter_entry $1 $2
+    else
+     echo filter not found
+     exit 1
+    fi
+}
+
+# add_filter_entry: Filter x Book
+#
+# add_filter_entry author friedman-dan
+add_filter_entry() {
+    # If the entry exists, there is no need to create it
+    [[ -d $2 ]] && echo exists || mkdir -p $NAL_LIB_DIR/$1/$2
+}
+
+## Remove a filter
+# Some questions that may be interesting:
+# Should this be case sensitive?
+# Should there be some sort of feedback or cue? 
+#   i.e. it may be hard to remember the name of a specific filter or 
+#        filter entry.
+# Should there be some sort of confirmation?
+# Pros: no accidents, cons: it becomes interactive
+remove() {
+    case $1 in
+        filter)
+            shift 1
+            remove_filter $@
+        ;;
+        entry)
+            shift 1
+            remove_entry $@
+        ;;
+        *) echo unrecognized remove command;;
+    esac
+}
+
+# e.g. nal rm filter author
+remove_filter() {
+    # Is there a possible char combination that could be
+    # construed as "illegal"?
+    #
+    # Should the default be to have a confirm?
+    filter_existsp $1 && rm -r $NAL_LIB_DIR/$1
+}
+
+# e.g. nal rm entry author friedman-dan
+remove_entry() {
+    # If the filter does not exist, we can't delete anything in the first place
+    # If the entry does not exist, then there is nothing to delete
+    filter_existsp $1 \
+    && entry_existsp $1 $2 \
+    && rm -r $NAL_LIB_DIR/$1/$2 \
+    || echo not found
+}
+
+# First production in my bad attempt at a grammar
+parse() {
+    case $1 in
+        add)
+            shift 1
+            add $@
+        ;;
+        rm)
+            shift 1
+            remove $@
+        ;;
+        *) 
+            usage
+        ;;
+    esac
+}
+
+# "Main"
+parse $@
