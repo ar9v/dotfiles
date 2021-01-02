@@ -1,0 +1,30 @@
+* Dotfiles
+
+Assorted dotfiles for all sorts of rices and personal utilities/goodies.
+
+** Window managers
+*** =Stumpwm=
+*** =i3=
+*** =Openbox=
+
+** Terminal Emulators
+*** =urxvt=
+*** =alacritty=
+
+** Status bars
+*** i3blocks
+*** polybar
+
+** Shells
+*** =bash=
+*** =fish=
+*** =zsh=
+
+** Editors
+*** =vim=
+*** =emacs=
+
+* TODO
+- Script to =stow= each program and install its dependencies
+- Documentation for each WM or configs with things in common
+- Upgrade session choosing script

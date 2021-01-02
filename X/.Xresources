@@ -6,19 +6,19 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keyboard-select.clipboard: true
 
 !!!! Font
-URxvt.font: xft:FreeMono
+URxvt.font: xft:Iosevka\ Nerd\ Font:size=12
 
 !! Aesthetics
 URxvt.scrollBar: false
 URxvt.fading: 30
-URxvt.boldFont: true
 
 !------------------------------------------------------------------------------!
 
 !! Emacs
-!!emacs.font: Iosevka
+emacs.font: Iosevka Nerd Font
 emacs.toolBar: off
 emacs.menuBar: off
+emacs.scrollBar: off
 emacs.Foreground:  #c5c8c6 
 emacs.Background:  #1d1f21 
 emacs.cursorColor: #c5c8c6 
@@ -28,7 +28,7 @@ emacs.cursorColor: #c5c8c6
 !! General X stuff
 Xcursor.theme: Breeze
 
-!!!! special
+!!! special
 *.foreground:   #c5c8c6
 *.background:   #1d1f21
 *.cursorColor:  #c5c8c6

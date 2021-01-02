@@ -1,5 +1,0 @@
-configuration {
-    theme: "solarized";
-    font: "Iosevka 10";
-    show-icons: true;
-}
