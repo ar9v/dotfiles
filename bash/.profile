@@ -23,4 +23,6 @@ export INFOPATH="/usr/share/info:/usr/local/share/info"
 export PATH="$PATH:/home/niyx/.emacs.d/bin/"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
-#startx
+# Rather crude, but this way startx isn't run if something
+# fails on session-choose.sh
+session-choose.sh && startx

@@ -12,5 +12,8 @@ xrdb -merge .Xresources
 picom -b 
 emacs --daemon
 
-#exec i3
-exec stumpwm
+# session-choose.sh writes to last-session
+# this way we don't have to version control last-session
+# nor do we have the issue of constantly modifying xinitrc,
+# which is version controlled
+exec $(cat last-session)
