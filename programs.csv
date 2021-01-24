@@ -1,0 +1,36 @@
+program,description
+htop,pretty process display
+tmux,terminal multiplexer
+ranger,terminal file navigation
+sudo,superuser do
+git,version control system
+rsync,copying and backups
+stow,dotfile management
+sysstat,utils to probe for system statistics (for i3blocks)
+acpi,battery info (for i3blocks)
+iw,probe and modify wireless devices (for i3blocks)
+light,control backlight
+zathura,document viewer
+zathura-pdf-mupdf,
+zathura-djvu,
+zip, archiving with .zip
+unzip, unzipping .zip files
+flameshot,screenshots with editing
+pavucontrol,
+pulseaudio-alsa,
+alsa-utils,
+xorg-fonts,
+xorg-xfontsel,
+ftp,
+wget,
+steam,
+ttf-liberation, font for steam,
+imagemagick,
+w3m, for w3imagedisplay, which ranger uses
+xlsfonts, xfontsel for ttf fonts
+papirus-icon-theme, for rofi icons
+alacritty,
+kitty,
+dunst,system messages
+cups,printing daemon
+mlocate,another file finding utility

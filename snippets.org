@@ -1,0 +1,15 @@
+* Snippets
+
+A miscellaneous collection of commands to perform specific tasks
+
+** Lowering an image's background
+Sometimes, images I want to use as wallpapers are too bright. To "dim" them,
+you can do:
+
+#+begin_src bash
+convert <file> -modulate <value> <new-file>
+#+end_src
+
+Here, =convert= is an =imagemagick= utility. =<value>= is made up of three values:
+brightness, saturation and hue. Therefore, to achieve the effect of "dimming" an 
+image, you would set =<value>= to something like =40,50,100=.

@@ -1,6 +1,6 @@
 configuration {
     theme: "gruvbox-dark-hard";
-    font: "Iosevka 10";
+    font: "Iosevka Nerd Font 10";
     show-icons: true;
     modi: "drun,run,window,ssh";
 }

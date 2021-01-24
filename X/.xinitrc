@@ -11,6 +11,11 @@ xrdb -merge .Xresources
 
 picom -b 
 emacs --daemon
+dunst &
+
+# This is a workaround, since flameshot uses dbus
+# I'll have to check for stumpwm dbus support
+flameshot &
 
 # session-choose.sh writes to last-session
 # this way we don't have to version control last-session

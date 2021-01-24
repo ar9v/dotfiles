@@ -1,0 +1,4 @@
+set selection-clipboard clipboard
+set smooth-scroll true
+map <Button4> scroll up
+map <Button5> scroll down

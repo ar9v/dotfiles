@@ -1,24 +1,24 @@
 [colors]
-background	= ${xrdb:background:#222}
-background-alt	= #444
-foreground	= ${xrdb:foreground:#222}
-foreground-alt	= #555
-black-1		= ${xrdb:color0:#222}
-black-2		= ${xrdb:color8:#222}
-red-1		= ${xrdb:color1:#222}
-red-2		= ${xrdb:color9:#222}
-green-1		= ${xrdb:color2:#222}
-green-2		= ${xrdb:color10:#222}
-yellow-1	= ${xrdb:color3:#222}
-yellow-2	= ${xrdb:color11:#222}
-blue-1		= ${xrdb:color4:#222}
-blue-2		= ${xrdb:color12:#222}
-magenta-1	= ${xrdb:color5:#222}
-magenta-2	= ${xrdb:color13:#222}
-cyan-1		= ${xrdb:color6:#222}
-cyan-2		= ${xrdb:color14:#222}
-white-1		= ${xrdb:color7:#222}
-white-2		= ${xrdb:color15:#222}
+background	= ${xrdb:background:#1d1f21}
+background-alt	= #1d1f21
+foreground	= ${xrdb:foreground:#c5c8c6}
+foreground-alt	= #c5c8c6
+black-1		= ${xrdb:color0:#282a2e}
+black-2		= ${xrdb:color8:#373b41}
+red-1		= ${xrdb:color1:#a54242}
+red-2		= ${xrdb:color9:#cc6666}
+green-1		= ${xrdb:color2:#8c9440}
+green-2		= ${xrdb:color10:#b5bd68}
+yellow-1	= ${xrdb:color3:#de935f}
+yellow-2	= ${xrdb:color11:#f0c674}
+blue-1		= ${xrdb:color4:#5f819d}
+blue-2		= ${xrdb:color12:#81a2be}
+magenta-1	= ${xrdb:color5:#85678f}
+magenta-2	= ${xrdb:color13:#b294bb}
+cyan-1		= ${xrdb:color6:#5e8d87}
+cyan-2		= ${xrdb:color14:#8abeb7}
+white-1		= ${xrdb:color7:#707880}
+white-2		= ${xrdb:color15:#c5c8c6}
 
 [bar/main]
 monitor = ${env:MONITOR}	
@@ -40,9 +40,16 @@ module-margin-left = 2
 module-margin-right = 2
 
 ; font-N = <fontconfig pattern>;<vertical offset>
+
+; Settings with Iosevka
 font-0 = Iosevka Nerd Font:pixelsize=12:style=Light;1
 font-1 = Iosevka:size=15;1
-;font-0 = siji:pixelsize=10;1
+
+; Settings with UW Ttyp0 
+;;font-0 = UW Ttyp0:size=13;1
+;;font-1 = UW Ttyp0:size=17;1
+;;font-2 = Iosevka:size=20;4
+
 modules-left = xworkspaces
 modules-center = 
 modules-right = alsa filesystem memory cpu battery temperature date wlan
@@ -81,8 +88,7 @@ format = <label-state>
 ;   %index%
 ; Default: %icon%  %name%
 label-active = "%name% %icon%   "
-label-active-foreground = ${colors.white-2}
-label-active-background = ${colors.background}
+label-active-foreground = ${colors.magenta-2}
 
 ; Available tokens:
 ;   %name%
@@ -90,8 +96,8 @@ label-active-background = ${colors.background}
 ;   %index%
 ; Default: %icon%  %name%
 label-urgent = "%name% %icon%   "
-label-urgent-foreground = ${colors.red-2}
-label-urgent-background = ${colors.background}
+; label-urgent-foreground = ${colors.red-2}
+; label-urgent-background = ${colors.background}
 
 ; Available tokens:
 ;   %name%
@@ -99,10 +105,10 @@ label-urgent-background = ${colors.background}
 ;   %index%
 ; Default: %icon%  %name%
 label-empty = "%name% %icon%   " 
-label-empty-foreground = ${colors.white-1}
+; label-empty-foreground = ${colors.white-1}
 
 label-occupied = "%name% %icon%   "
-label-occupied-foreground = ${colors.white-1}
+; label-occupied-foreground = ${colors.white-1}
 icon-0 = term;
 icon-1 = web;
 icon-2 = reading;

@@ -89,6 +89,9 @@
 ;; Start window numbering from 1. Gets funky with more than 9 windows in a group
 (setq *window-number-map* "1234567890")
 
+;; Change Message/Input bar font
+(set-font "-uw-ttyp0-medium-*-*-*-14-*-*-*-*-*-*-*")
+
 ;;;; Keybindings
 
 ;; Opening programs with rofi
@@ -159,14 +162,20 @@
 (define-key *root-map* (kbd "_") "mode-line")
 
 ;; Flameshot control
-(define-key *top-map* (kbd "Print") "run-shell-command flameshot")
+(define-key *top-map* (kbd "Print") "run-shell-command flameshot gui")
 (define-key *top-map* (kbd "C-Print") "run-shell-command pkill flameshot")
 
 ;;;; Window programming
 
-;; Keybindings
+;;; Keybindings
 (define-key *root-map* (kbd "C-TAB") "pull-hidden-next")
 (define-key *root-map* (kbd "q") "remove-split")
+
+;;; Group navigation
+(define-key *top-map* (kbd "M-F1") "gselect 1")
+(define-key *top-map* (kbd "M-F2") "gselect 2")
+(define-key *top-map* (kbd "M-F3") "gselect 3")
+(define-key *top-map* (kbd "M-F4") "gselect 4")
 
 ;;;; Commands for programs that must be opened with floating windows
 ;; Open Zoom
@@ -176,3 +185,19 @@
   (run-shell-command "zoom" nil))
 
 
+(defun hide-all-lower-windows (current last)
+  (declare (ignore current last))
+  (when (typep (current-group) 'stumpwm::tile-group)
+    (mapc (lambda (win)
+            (unless (eq win (stumpwm::frame-window
+                             (stumpwm::window-frame win)))
+              (stumpwm::hide-window win)))
+          (group-windows (current-group)))))
+
+(defcommand enable-hiding-lower-windows () ()
+  "Enable a hook that hides all windows that aren't at the top of
+      their frame.
+    This is primarily useful when you have (a) transparent window(s) and
+    want to
+    see the wallpaper underneath instead of other windows."
+  (add-hook *focus-window-hook* 'hide-all-lower-windows))

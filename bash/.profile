@@ -25,4 +25,7 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # Rather crude, but this way startx isn't run if something
 # fails on session-choose.sh
-session-choose.sh && startx
+#
+# We check for the SHLVL as a hack to avoid running this in,
+# say, tmux
+[ $SHLVL -eq 1 ] && session-choose.sh && startx

@@ -1,0 +1,230 @@
+* Arch Configuration Documentation
+
+This is meant to document steps taken in the configuration of an Arch Linux system
+It is inspired by the Arch Wiki's post-installation "General Recommendations"
+and the paper "Manual Work is a Bug". 
+
+This document assumes we have a vanilla Arch Linux system post-installation, and follows
+my preferences.
+
+** Nice-to-have programs
+- =tmux= for multiplexing while we don't have a GUI
+- =ranger= for quick filesystem navigation
+- =sudo= if the first thing we do is create a user
+- =git= for dotfiles
+- =stow= for dotfile management
+- =htop= for system performance tracking
+- =curl= and =wget= for downloading stuff from the internet
+- =zip/unzip= for .zips
+
+** Creating a user and adding to sudo
+- =useradd=
+- Create =sudo= group or use =wheel= (preferred as per Wiki) and edit sudoers with visudo
+
+** Run backup_return script (todo)
+Plug in our backup drive and extract the contents onto ~, most
+likely using the following sequence:
+
+#+BEGIN_SRC bash
+sudo mount /dev/sdX /mnt
+cp -R /mnt/$user/* $user
+#+END_SRC
+
+This of course assumes that =~= is empty.
+
+** Getting the dotfiles
+We must fetch/clone our dotfiles, so we need =git=. 
+NOTE: how do we deal with authentication?
+
+#+BEGIN_SRC bash
+pacman -S git
+git clone https://github.com/argvniyx/dotfiles
+#+END_SRC
+
+** Stowing
+To =stow=, we must progressively install each program and stow it's
+respective dotfiles. This is the most challenging part, since it is common
+to have dotfiles that depend on having programs, fonts and other types of
+resources installed.
+
+In general, to stow a given program's dotfiles we simply do:
+
+#+BEGIN_SRC bash
+cd ~/dotfiles
+stow X
+#+END_SRC
+
+Here, =X= is the directory that mirrors the =~= structure (e.g. I have a dir =X= 
+which holds =.Xresources=, =.xinitrc= etc.)
+
+** Installing the window manager(s)
+
+*** i3, awesome and openbox
+#+BEGIN_SRC bash
+# pacman -S i3 awesome openbox
+#+END_SRC
+
+*** StumpWM
+StumpWM is on the AUR and depends on the following:
+
+**** SBCL
+=sudo pacman -S sbcl=
+
+**** cl-alexandria
+#+BEGIN_SRC bash
+# In ~/pacaur/
+git clone https://aur.archlinux.org/cl-alexandria-git.git
+cd cl-alexandria-git && makepkg-si
+#+END_SRC
+
+**** clx
+#+BEGIN_SRC bash
+# In ~/pacaur/
+git clone https://aur.archlinux.org/clx-git.git
+cd clx-git && makepkg-si
+#+END_SRC
+
+
+**** cl-ppcre
+#+BEGIN_SRC bash
+# In ~/pacaur/
+git clone https://aur.archlinux.org/cl-ppcre.git
+cd cl-ppcre && makepkg-si
+#+END_SRC
+
+**** stumpwm
+#+BEGIN_SRC bash
+git clone https://aur.archlinux.org/stumpwm.git
+cd stumpwm && makepkg-si
+#+END_SRC 
+
+**** stumpwm-contrib
+The Stumpwm modules (e.g. for managing keyboard layouts, volume etc) are also found 
+in the AUR. 
+
+** Installing ricing programs and misc
+*** Program control
+**** dmenu
+Arch does not include =dmenu= in =i3=, apparently, so it is a good idea to install this via =pacman=.
+
+**** rofi
+Likewise, once one has a more established environment, they would probably prefer rofi, which is also
+available for install through =pacman=.
+
+*** Firefox
+This repo contains the CSS files that [[https://github.com/mut-ex/minimal-functional-fox
+][minimal-functional-fox]] places in the 
+=~/.mozilla/firefox/*/chrome= directory.
+
+*** Feh
+*** Polybar
+Polybar is in the AUR, so we have to clone it and follow AUR procedures.
+
+#+BEGIN_SRC bash
+# pacaur/ is the dir where I keep my AUR related things. A bit of a misnomer,
+# so feel free to use another name
+git clone https://aur.archlinux.org/polybar.git ~/pacaur/
+cd !$/polybar
+makepkg -si
+#+END_SRC
+
+*** Picom (formerly compton)
+Picom is available in Arch repos, so =pacman -S picom= suffices.
+
+*** Fonts
+Before installing fonts, we should get the =xorg-fonts= group and =xorg-xfontsel= for
+older applications or simply checking font characteristics. The GTK equivalent for
+=xfontsel= (i.e. for XFT TTF fonts) is =gtk2fontsel=
+
+**** Iosevka
+We can download Iosevka fonts from the AUR
+
+#+BEGIN_SRC bash
+git clone https://aur.archlinux.org/ttf-iosevka.git
+cd ttf-iosevka && makepkg -si
+#+END_SRC
+
+We could also install the Nerd Fonts to have glyphs readily available. This might spare us
+the occasional headache that comes from mixing FontAwesome stuff for Polybar...
+
+#+BEGIN_SRC bash
+git clone https://aur.archlinux.org/nerd-fonts-iosevka.git
+cd nerd-fonts-iosevka && makepkg -si
+#+END_SRC
+
+There are lots of other Nerd Fonts, so one might want to clone and install
+=nerd-fonts-complete= instead. As of the time of this writing, I could only get
+Iosevka to play nice in URxvt by using the Iosevka font in this package and setting
+the size to 12 in =.Xresources= (i.e. =URxvt.font: xft:Iosekva\ Nerd\ Font:size=12=).
+
+**** Ttyp0
+We have to download the font and install it manually, or use the AUR.
+
+#+BEGIN_SRC bash
+# Manually
+curl -O https://people.mpi-inf.mpg.de/~uwe/misc/uw-ttyp0/uw-ttyp0-1.3.tar.gz
+tar xvzf uw-ttyp0-1.3.tar.gz
+mv $dir/*.ttf ~/.local/share/fonts
+fc-cache
+
+# AUR
+git clone https://aur.archlinux.org/uw-ttyp0-font.git
+cd uw-ttyp0-font && makepkg -si
+
+# AUR (OpenType files)
+git clone https://aur.archlinux.org/otb-uw_ttyp0.git
+cd otb-uw_ttyp0 && makepkg -si
+#+END_SRC
+
+**** Terminus
+=sudo pacman -S terminus-font=
+
+**** Other fonts
+Fonts not available through =pacman= nor the AUR can be installed manually by
+placing the files in =~/.local/share/fonts= and running =fc-cache=. Additionally, 
+=pacman= can manage locally installed fonts by *creating a package*. One should
+read [[https://wiki.archlinux.org/index.php/Fonts][https://wiki.archlinux.org/index.php/Fonts]] for more information.
+
+**** Font debugging in URxvt
+Sometimes fonts will display weirdly in URxvt. A way to check for possible errors is to
+launch URxvt with the =-fn= option as such =urxvt -fn "xft:Iosevka..."=, this will display
+possible errors. 
+
+Other common font errors might have to do with the inability to find a font, for which
+[[https://wiki.archlinux.org/index.php/Font_configuration][https://wiki.archlinux.org/index.php/Font_configuration]] has good information.
+
+*** Audio
+**** ALSA
+#+BEGIN_SRC bash
+sudo pacman -S alsa-utils
+#+END_SRC 
+
+**** Pulseaudio and Pavucontrol
+Both =pulseaudio= (a sound server) and =pavucontrol= (pulseaudio sound mixer) are part of official Arch
+repos, so they can be installed via =pacman=.
+
+#+BEGIN_SRC bash
+sudo pacman -S pulseaudio pulseaudio-alsa pavucontrol
+#+END_SRC
+
+*** Power management
+**** Backlight control
+There are several programs to control the backlight, I have chosen =light=, which can be installed
+issuing =sudo pacman -S light=. Chances are, however, that some permissions will have to be tweaked.
+A suggested in https://github.com/haikarainen/light/issues/94, we can use the following to add the
+user to the =video= group:
+
+#+BEGIN_SRC bash
+sudo usermod -aG video $user
+#+END_SRC bash
+
+
+**** ACPI events
+
+
+** Utils
+*** =zip= and =unzip=
+=sudo pacman -S zip unzip=
+
+* TODO Write about config files dependencies (e.g. stumpwm depends on slynk etc)
+* TODO Stumpwm modules
