@@ -6,7 +6,8 @@ ranger/.config/ranger/bookmarks
 vim/.vim/.netrwhist
 
 # Emacs
-emacs/.emacs.d/
+emacs/.emacs.default/auto-save-list
+emacs/.emacs.default/elpa
 
 *~
 \#*

@@ -226,5 +226,31 @@ sudo usermod -aG video $user
 *** =zip= and =unzip=
 =sudo pacman -S zip unzip=
 
+** Editors
+*** Emacs
+To separate "casual" emacs hacking from day-to-day work usage, I'll use =chemacs= and default to =doom emacs=,
+while hacking on vanilla emacs as a hobby. This means that stowing for emacs will be slightly different.
+
+
+**** Chemacs
+#+begin_src bash
+[ -f ~/.emacs ] && mv ~/.emacs ~/.emacs.bak
+[ -d ~/.emacs.d ] && mv ~/.emacs.d ~/.emacs.default
+git clone https://github.com/plexus/chemacs2.git ~/.emacs.d
+#+end_src
+
+=.emacs.d= stops being a stowed symlink, we clone Doom emacs to another directory
+specified within =~/.emacs-profiles.el= and we set the =env= key in =~/.emacs-profiles.el=
+to =~/.doom.d=.
+
+**** Doom
+Since we use Chemacs2, we clone Doom to =~/doom-emacs=, which is what we set in
+=~/.emacs-profiles.el=
+
+#+begin_src bash
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/doom-emacs
+~/doom-emacs/bin/doom install
+#+end_src
+
 * TODO Write about config files dependencies (e.g. stumpwm depends on slynk etc)
 * TODO Stumpwm modules

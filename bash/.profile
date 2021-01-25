@@ -20,7 +20,8 @@ fi
 export EDITOR='/usr/bin/emacs'
 export INFOPATH="/usr/share/info:/usr/local/share/info"
 
-export PATH="$PATH:/home/niyx/.emacs.d/bin/"
+export PATH="$PATH:$HOME/.emacs.d/bin/"
+export PATH="$PATH:$HOME/doom-emacs/bin/"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # Rather crude, but this way startx isn't run if something
