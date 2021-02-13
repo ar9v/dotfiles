@@ -20,13 +20,18 @@ fi
 export EDITOR='/usr/bin/emacs'
 export INFOPATH="/usr/share/info:/usr/local/share/info"
 
-export PATH="$PATH:$HOME/.emacs.d/bin/"
-export PATH="$PATH:$HOME/doom-emacs/bin/"
+# If we add the $HOME var in env-paths, it is not expanded
+# when we use sed to filter out commented paths in the file
+# As a workaround, and since these are all $HOME paths, we simply
+# use $HOME from the script
+paths=$(sed -n {/^[^#]/p} env-paths)
+for path in ${paths}
+do
+    PATH="$PATH:$HOME/${path}"
+done
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
-# Rather crude, but this way startx isn't run if something
-# fails on session-choose.sh
-#
-# We check for the SHLVL as a hack to avoid running this in,
-# say, tmux
-[ $SHLVL -eq 1 ] && session-choose.sh && startx
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+session-choose.sh && startx

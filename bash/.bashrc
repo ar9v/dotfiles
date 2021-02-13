@@ -28,5 +28,10 @@ function ranger-cd {
     rm -f -- "$tempfile"
 }
 
-# This binds Ctrl-o to ranger-cd:
 bind '"\C-o":"ranger-cd\C-m"'
+
+# Autorun tmux on a graphical display
+if command -v tmux >/dev/null 2>&1 && [ "${DISPLAY}" ]
+then
+    [ -z "$TMUX" ] && (tmux attach || tmux) >/dev/null 2>&1
+fi
