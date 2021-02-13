@@ -111,6 +111,9 @@ Arch does not include =dmenu= in =i3=, apparently, so it is a good idea to insta
 Likewise, once one has a more established environment, they would probably prefer rofi, which is also
 available for install through =pacman=.
 
+Desktop files =(*.desktop)= have to be placed in =~/.local/share/applications=. To check that they are
+well-formed, one may use the command =desktop-file-validate=
+
 *** Firefox
 This repo contains the CSS files that [[https://github.com/mut-ex/minimal-functional-fox
 ][minimal-functional-fox]] places in the 
@@ -254,3 +257,7 @@ git clone --depth 1 https://github.com/hlissner/doom-emacs ~/doom-emacs
 
 * TODO Write about config files dependencies (e.g. stumpwm depends on slynk etc)
 * TODO Stumpwm modules
+
+* Debugging wireless interface not detected problem in Arch
+NetworkManager can work with =iwd= as a backend, but I've found that exclusively using NetworkManager has fixed my wireless
+interface detection problems. This is most likely due to some sort of race condition.

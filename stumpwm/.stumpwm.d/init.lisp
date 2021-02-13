@@ -2,12 +2,9 @@
 ;; My own stumpwmrc
 
 (in-package :stumpwm)
-;; (require :slynk)
+(require :slynk)
 
-;; Most of my definitiones are within :stumpwm, so might as well
 (setf *default-package* :stumpwm)
-
-;; I need to specify where the modules are
 (set-module-dir "/usr/share/stumpwm/contrib")
 
 ;; Load modules
@@ -16,10 +13,28 @@
                       "kbd-layouts"))
   (load-module module))
 
+
+;; Load additional config files
+(defvar al/init-directory
+  (directory-namestring
+   (truename (merge-pathnames (user-homedir-pathname)
+                              ".stumpwm.d")))
+  "A directory with initially loaded files.")
+
+(defun al/load (filename)
+  "Load a file FILENAME (without extension) from `al/init-directory'."
+  (let ((file (merge-pathnames (concat filename ".lisp")
+                               al/init-directory)))
+    (if (probe-file file)
+        (load file)
+        (format *error-output* "File '~a' doesn't exist." file))))
+
+(al/load "key-bindings")
+
 ;; Initialization
 (cond (*initializing*
        ;; Slynk server
-       ;; (slynk:create-server :port 4008 :dont-close t)
+       (slynk:create-server :port 4008 :dont-close t)
 
        ;; Emacs Daemon
        (run-shell-command "emacs --daemon")
@@ -28,16 +43,16 @@
        (setf *window-border-style* :thin)
 
        ;; Gaps
-       ;;; NOTE: Having gaps causes Stump to crash when using Zoom
-       ;;; Inner gaps run along all the 4 borders of a window
+;;; NOTE: Having gaps causes Stump to crash when using Zoom
+;;; Inner gaps run along all the 4 borders of a window
        (setf swm-gaps:*inner-gaps-size* 5)
 
-       ;;; Outer gaps add more padding to the outermost borders of a window (touching
-       ;;; the screen border)
+;;; Outer gaps add more padding to the outermost borders of a window (touching
+;;; the screen border)
        (setf swm-gaps:*outer-gaps-size* 15)
 
        ;; Groups
-       ;;;; Create the groups needed to match up with the xworkspaces polybar config
+;;;; Create the groups needed to match up with the xworkspaces polybar config
        (run-commands "grename term") ;; Default -> term
        (dolist (x '("web" "reading"))
          (run-commands (concat "gnewbg " x)))
@@ -52,7 +67,7 @@
        (run-shell-command "launch-poly.sh")
 
        ;; Toggle gaps
-       (run-commands "toggle-gaps")
+       ;; (run-commands "toggle-gaps")
 
        ;; God knows why but StumpWM does not handle dual-monitor polybars so.. time to hack
        ;; Do note that this must be changed. Changes that fire XrandR (e.g. disconnecting the monitor)
@@ -70,7 +85,7 @@
       (t nil))
 
 ;; Mouse focus rule
-(setf *mouse-focus-policy* :sloppy)
+(setf *mouse-focus-policy* :click)
 
 ;; Keyboard layouts and switch bind
 (kbd-layouts:keyboard-layout-list "us" "latam")
@@ -112,6 +127,19 @@
 
 (define-key *root-map* (kbd "C-s") "power-mode")
 
+;; Polybar spacing
+(defcommand make-polybar-space () ()
+ (let ((heads (screen-heads (current-screen))))
+         (dolist (head heads)
+           (let ((nh (make-head :number 0 ;; number doesn't matter for scaling
+                                :x (head-x head) :y (head-y head)
+                                :width (head-width head)
+                                :height (- (head-height head) 30) ;; We make the head vertically smaller to fit polybar
+                                :window nil)))
+             (scale-head (current-screen)
+                         head
+                         nh)))))
+
 ;; Frame movement
 (define-key *root-map* (kbd "o") "fnext")
 (define-key *top-map* (kbd "s-h") "move-focus left")
@@ -142,17 +170,23 @@
 (defcommand discord () ()
   (run-or-raise "discord" '(:class "Discord")))
 
+(defcommand zoom () ()
+  (run-or-raise "zoom" '(:class "zoom")))
+
 ;;;; Cycle through the open instances
 ;;;; (Emacs already does this)
 (define-key *root-map* (kbd "C-q") "firefox")
 (define-key *root-map* (kbd "C-c") "terminal")
-(define-key *root-map* (kbd "C-e") "emacsclient")
+;; (define-key *root-map* (kbd "C-e") "emacsclient")
+(define-key *root-map* (kbd "C-e") "emacs")
 (define-key *root-map* (kbd "C-d") "discord")
+(define-key *root-map* (kbd "C-z") "zoom")
 
 ;;;; Open new instances
 (define-key *root-map* (kbd "C-Q") "exec firefox")
 (define-key *root-map* (kbd "C-C") "exec urxvt")
-(define-key *root-map* (kbd "C-E") "exec emacsclient -c")
+;; (define-key *root-map* (kbd "C-E") "exec emacsclient -c")
+(define-key *root-map* (kbd "C-E") "exec emacs")
 
 ;; Backlight keybindings
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "run-shell-command light -A 3")
@@ -167,22 +201,17 @@
 
 ;;;; Window programming
 
-;;; Keybindings
-(define-key *root-map* (kbd "C-TAB") "pull-hidden-next")
-(define-key *root-map* (kbd "q") "remove-split")
+;; ;;; Keybindings
+;; (define-key *root-map* (kbd "C-TAB") "pull-hidden-next")
+;; (define-key *root-map* (kbd "q") "remove-split")
 
-;;; Group navigation
-(define-key *top-map* (kbd "M-F1") "gselect 1")
-(define-key *top-map* (kbd "M-F2") "gselect 2")
-(define-key *top-map* (kbd "M-F3") "gselect 3")
-(define-key *top-map* (kbd "M-F4") "gselect 4")
+;; ;;; Group navigation
+;; (define-key *top-map* (kbd "M-F1") "gselect 1")
+;; (define-key *top-map* (kbd "M-F2") "gselect 2")
+;; (define-key *top-map* (kbd "M-F3") "gselect 3")
+;; (define-key *top-map* (kbd "M-F4") "gselect 4")
 
-;;;; Commands for programs that must be opened with floating windows
-;; Open Zoom
-(defcommand zoom () ()
-  "Start Zoom in the random group (floating group)"
-  (run-commands "gselect random")
-  (run-shell-command "zoom" nil))
+
 
 
 (defun hide-all-lower-windows (current last)
