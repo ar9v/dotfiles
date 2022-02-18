@@ -13,3 +13,8 @@ keycode 64 = ISO_Level3_Shift
 keycode 108 = Alt_L
 add mod1 = Alt_L
 add mod5 = ISO_Level3_Shift
+
+! Map Print to Super/Mod4.
+! My Thinkpad has a print key to the right of
+! the spacebar, which is useful for awesomewm
+add mod4 = Print
