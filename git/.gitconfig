@@ -19,3 +19,5 @@ lg = !"git lg1"
     tool = vimdiff3
 [credential]
 	helper = cache 
+[init]
+	defaultBranch = main
