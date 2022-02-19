@@ -1,23 +1,12 @@
-# ~/.profile: executed by the command interpreter for login shells.
-# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
-# exists.
-# see /usr/share/doc/bash/examples/startup-files for examples.
-# the files are located in the bash-doc package.
-
-# the default umask is set in /etc/profile; for setting the umask
-# for ssh logins, install and configure the libpam-umask package.
-#umask 022
-
-# if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 
 # ENVIRONMENT VARIABLES
-export EDITOR='/usr/bin/emacs'
+export EDITOR="/usr/bin/emacsclient -c"
+export VISUAL="$EDITOR"
 export INFOPATH="/usr/share/info:/usr/local/share/info"
 
 # If we add the $HOME var in env-paths, it is not expanded
@@ -29,9 +18,17 @@ for path in ${paths}
 do
     PATH="$PATH:$HOME/${path}"
 done
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+# Home
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# Tex-Live Manager script
+export TEXMFDIST="/usr/share/texmf-dist"
+
+# opam configuration
+test -r /home/argv/.opam/opam-init/init.sh && . /home/argv/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 session-choose.sh && startx
