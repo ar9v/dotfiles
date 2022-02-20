@@ -1,4 +1,5 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+(require 'evil)
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
@@ -8,6 +9,9 @@
 ;; clients, file templates and snippets.
 (setq user-full-name "Ricardo Vela"
       user-mail-address "aricav96@gmail.com")
+
+;; Splash screen aesthetics
+(setq fancy-splash-image "/home/argv/Pictures/muertito-alpha.png")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -21,16 +25,14 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "Iosevka" :size 16)
+      doom-variable-pitch-font (font-spec :family "ETBembo" :size 16))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+;; (setq doom-theme 'doom-tomorrow-night)
 (setq doom-theme 'doom-tomorrow-night)
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-(setq org-roam-directory "~/Documents/zettelkasten")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -53,9 +55,18 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Aesthetics
-(setq fancy-splash-image "/home/argv/Pictures/mdh-emacs.png")
+(load! "org-config.el")
 
+(setq latex-run-command "pdflatex")
 
-;; Org-roam/Zettelkasten stuff
-(add-hook 'after-init-hook 'org-roam-mode)
+;; Racket
+(add-hook! racket-mode
+  (lambda ()
+    (racket-smart-open-bracket-mode -1)))
+
+;; Tabs
+(add-hook! python-mode
+  (setq indent-tabs-mode nil)
+  (setq tab-width 4)
+  (setq evil-shift-width 4)
+  (setq python-indent 4))
