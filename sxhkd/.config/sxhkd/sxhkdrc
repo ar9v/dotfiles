@@ -1,0 +1,11 @@
+super + l; {e,s}
+      setxkbmap -layout {us,latam} && xmodmap /home/argv/.Xmodmap
+
+XF86AudioRaiseVolume
+      pactl -- set-sink-volume 0 +2%
+
+XF86AudioLowerVolume
+      pactl -- set-sink-volume 0 -2%
+
+XF86AudioMute
+      pactl -- set-sink-mute 0 toggle
