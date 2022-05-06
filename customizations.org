@@ -261,3 +261,6 @@ git clone --depth 1 https://github.com/hlissner/doom-emacs ~/doom-emacs
 * Debugging wireless interface not detected problem in Arch
 NetworkManager can work with =iwd= as a backend, but I've found that exclusively using NetworkManager has fixed my wireless
 interface detection problems. This is most likely due to some sort of race condition.
+
+* Mouse wheel problems
+Install =imwheel=, run =imwheel -b 45= in a startup script. For Unity, check the =imwheel= config file.
