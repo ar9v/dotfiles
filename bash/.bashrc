@@ -1,4 +1,4 @@
-PS1=$'\n\[\e[0;34m\]\u\[\e[0m\]@\[\e[1;31m\]\h \[\e[1;32m\]\W \[\e[1;34m\]\n  \[\e[1;35m\] \u03bb \e[0m\]'
+PS1=$'\n\[\e[0;34m\]\u\[\e[0m\]@\[\e[1;31m\]\h \[\e[1;32m\]\W \[\e[1;34m\]\n  \[\e[1;35m\] \u03bb \[\e[0m\]'
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -30,3 +30,4 @@ fi
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
+
