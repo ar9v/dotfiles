@@ -45,7 +45,9 @@ ps1() {
         blue whoami   \
         black @       \
         red hostname  \
-        newline ' ' purple lambda
+        newline ' '   \
+        purple lambda \
+        black
         `
     echo -e "$prompt "
 }
