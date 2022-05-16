@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# We need `declare` so that bash knows it is an associative array
+declare -A colors
+colors=(
+    ["red"]="1;31m"
+    ["green"]="0;32m"
+    ["blue"]="0;34m"
+    ["black"]="0m"
+    ["purple"]="1;35m"
+)
+
+# $1: escape sequence
+esc() {
+    local sequence="$1"
+    echo "\[\e[$sequence\]"
+}
+
+# Colors
+red () { echo `esc ${colors[red]}`; }
+green () { echo `esc ${colors[green]}`; }
+blue () { echo `esc ${colors[blue]}`; }
+black () { echo `esc ${colors[black]}`; }
+purple () { echo `esc ${colors[purple]}`; }
+
+# Special/escapable chars
+newline () { echo "\n"; }
+lambda () { echo "\u03bb"; }
+
+# Evaluate arg or just echo it if not a command and spit out the whole thing
++ () {
+    local result
+    for c in "$@"
+    do
+        # Evaluate arg or pass it literally
+        result+=`test $(command -v $c) && $c || echo $c`
+    done
+
+    echo "$result"
+}
+
+ps1() {
+    prompt=`IFS=":" + \
+        newline       \
+        blue whoami   \
+        black @       \
+        red hostname  \
+        newline ' ' purple lambda
+        `
+    echo -e "$prompt "
+}
+
+ps1
