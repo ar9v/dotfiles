@@ -7,6 +7,7 @@ colors=(
     ["green"]="0;32m"
     ["blue"]="0;34m"
     ["black"]="0m"
+    ["teal"]="1;36m"
     ["purple"]="1;35m"
 )
 
@@ -17,38 +18,44 @@ esc() {
 }
 
 # Colors
-red () { echo `esc ${colors[red]}`; }
-green () { echo `esc ${colors[green]}`; }
-blue () { echo `esc ${colors[blue]}`; }
-black () { echo `esc ${colors[black]}`; }
+red    () { echo `esc ${colors[red]}`;    }
+green  () { echo `esc ${colors[green]}`;  }
+blue   () { echo `esc ${colors[blue]}`;   }
+black  () { echo `esc ${colors[black]}`;  }
+teal   () { echo `esc ${colors[teal]}`;   }
 purple () { echo `esc ${colors[purple]}`; }
 
 # Special/escapable chars
-newline () { echo "\n"; }
-lambda () { echo "\u03bb"; }
+newline () { echo "\n";     }
+lambda  () { echo "\u03bb"; }
+arrow   () { echo "\u2192"; }
 
-# Evaluate arg or just echo it if not a command and spit out the whole thing
-+ () {
-    local result
-    for c in "$@"
-    do
-        # Evaluate arg or pass it literally
-        result+=`test $(command -v $c) && $c || echo $c`
-    done
-
-    echo "$result"
+# Commands
+git_branch () { echo '`fd -H ".git$" . -q -d1 && git branch || echo ""`' ; }
+status     () {
+    echo "\`code=\"\$?\" ; if [[ \$code -eq 0 ]]; then echo \"$(green) \$code\"; else echo \"$(red) \$code\"; fi\`"
 }
 
 ps1() {
-    prompt=`IFS=":" + \
-        newline       \
-        blue whoami   \
-        black @       \
-        red hostname  \
-        newline ' '   \
-        purple lambda \
-        black
-        `
+    local prompt=""
+
+    elements=(
+        `newline`
+        `blue ; whoami`
+        `black` @
+        `red` `hostname`
+        "`status`" ' ' `green` '\W'
+        `teal` ' ' "`git_branch`"
+        `newline` ' '
+        `purple ; lambda`
+        `black`
+    )
+
+    for e in "${elements[@]}"
+    do
+        prompt+="$e"
+    done
+
     echo -e "$prompt "
 }
 
