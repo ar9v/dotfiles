@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+# zoshoko (long collection)
+# author: argv
+#
+# ROADMAP
+# - add bash completions
+# - add `remove` verb (for tags, books)
+# - integrate with ranger
+
+usage () {
+    cat <<EOF
+zoshoko (zk)
+------------
+
+USAGE:
+    zk help          : shows this
+    zk add FILE      : moves FILE to ZKPATH/books
+    zk tag FILE TAG+ : creates TAG in ZKPATH/tags and symlinks ZKPATH/books/FILE -> ZKPATH/tags/TAG/FILE
+
+NOTES:
+    - ZKPATH defaults to ~/Documents/library
+    - TAG may be a forward-slash separated name, such that you have a nested tag
+EOF
+}
+
+error() {
+    echo -n "ERROR: "
+    case $1 in
+        "SYNTAX")
+            echo "incorrect syntax"
+            usage
+            exit 1
+            ;;
+        "NONVERB")
+            echo "verb is not one of 'add' | 'tag'"
+            exit 2
+            ;;
+        "NONEXISTENT")
+            echo "book does not exist"
+            exit 3
+            ;;
+        "EXISTENT")
+            echo "this book is already in the library"
+            exit 4
+            ;;
+        *)
+            echo "something went wrong"
+            exit 127
+    esac
+}
+
+add () {
+    [ $# -lt 1 ] && error SYNTAX
+
+    # Let's strip off the other parts of the path, if they are there
+    local file="$1"
+    local book=`basename $file`
+
+    # (1) Does the FILE exist? (2) Is the book (by name) already in the library?
+    # We check (2) because two books might have the same basename, but be different. You wouldn't
+    # want to overwrite them, and you would also like to distinguish them!
+    [ ! -e "$file" ] && error NONEXISTENT
+    [ -e "$BOOKS/$book" ] && error EXISTENT
+
+    mv "$file" "$BOOKS"
+}
+
+tag () {
+    [ $# -lt 2 ] && error SYNTAX
+
+    local book=`basename $1`
+    [ ! -e "$BOOKS/$book" ] && error NONEXISTENT
+
+    for tag in $tags
+    do
+        [ -d "$TAGS/$tag" ] || mkdir -p "$TAGS/$tag"
+        ln -s "$BOOKS/$book" "$TAGS/$tag"
+    done
+}
+
+main () {
+    # Is ZKPATH (-n)onempty? If not, default to a path
+    [ -n "$ZKPATH" ] || ZKPATH="$HOME/Documents/library/"
+    BOOKS="$ZKPATH/books/"
+    TAGS="$ZKPATH/tags/"
+
+    local verb="$1"
+    local file="$2"
+    local tags="${@:3}"
+
+    case $verb in
+        "help") usage ;;
+        "add") add $file ;;
+        "tag") tag $file $tags ;;
+        *) error NONVERB ;;
+    esac
+}
+
+main "$@"

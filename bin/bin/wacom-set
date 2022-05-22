@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for d in $(xsetwacom --list devices | awk '{print $9}')
+do
+    xsetwacom --set $d MapToOutput HDMI-2 
+done
