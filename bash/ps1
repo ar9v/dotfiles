@@ -6,7 +6,8 @@ colors=(
     ["red"]="1;31m"
     ["green"]="0;32m"
     ["blue"]="0;34m"
-    ["black"]="0m"
+    ["reset"]="0m"
+    ["white"]="1;37m"
     ["teal"]="1;36m"
     ["purple"]="1;35m"
 )
@@ -21,7 +22,8 @@ esc() {
 red    () { echo `esc ${colors[red]}`;    }
 green  () { echo `esc ${colors[green]}`;  }
 blue   () { echo `esc ${colors[blue]}`;   }
-black  () { echo `esc ${colors[black]}`;  }
+reset  () { echo `esc ${colors[reset]}`;  }
+white  () { echo `esc ${colors[white]}`;  }
 teal   () { echo `esc ${colors[teal]}`;   }
 purple () { echo `esc ${colors[purple]}`; }
 
@@ -42,13 +44,13 @@ ps1() {
     elements=(
         `newline`
         `blue ; whoami`
-        `black` @
+        `white` @
         `red` `hostname`
         "`status`" ' ' `green` '\W'
         `teal` ' ' "`git_branch`"
         `newline` ' '
         `purple ; lambda`
-        `black`
+        `white`
     )
 
     for e in "${elements[@]}"

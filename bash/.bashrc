@@ -1,4 +1,5 @@
 PS1=`./ps1`
+trap 'echo -ne "\e[0m" ' DEBUG
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
