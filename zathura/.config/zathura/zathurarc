@@ -1,4 +1,52 @@
+set font "Iosevka 10"
+
 set selection-clipboard clipboard
 set smooth-scroll true
 map <Button4> scroll up
 map <Button5> scroll down
+
+# Colors
+## Backgrounds
+set notification-error-bg       "#0d0d0d" 
+set notification-warning-bg     "#0d0d0d" 
+set notification-bg             "#0d0d0d"
+
+set completion-bg               "#0d0d0d" 
+set completion-group-bg         "#0f0f0f" 
+set completion-highlight-bg     "#444444"
+
+set index-bg                    "#0d0d0d"
+set index-active-bg             "#222222"
+
+## Foregrounds
+set notification-error-fg       "#ff6a6a" 
+set notification-warning-fg     "#ffec8b" 
+set notification-fg             "#b8bb26" 
+
+set completion-fg               "#f5f5f5" 
+set completion-group-fg         "#ffc125" 
+set completion-highlight-fg     "#c1ffc1" 
+
+set index-fg                    "#f5f5f5" 
+set index-active-fg             "#fffff2" 
+
+set inputbar-bg                 "#111111" 
+set inputbar-fg                 "#fffff8" 
+
+set statusbar-bg                "#333333" 
+set statusbar-fg                "#f5f5f5" 
+
+set highlight-color             "#f0e68c"
+set highlight-active-color      "#e9967a" 
+
+set default-bg                  "#0d0d0d" 
+set default-fg                  "#fffff8" 
+set render-loading              true
+set render-loading-bg           "#32302f" 
+set render-loading-fg           "#ebdbb2" 
+
+# Recolor book content's color
+set recolor-lightcolor          "#f5f5f5" 
+set recolor-darkcolor           "#0f0f0f" 
+set recolor                     "true"
+set recolor-keephue             true      # keep original color
