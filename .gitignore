@@ -1,13 +1,3 @@
 # Ranger
 ranger/.config/ranger/history
 ranger/.config/ranger/bookmarks
-
-# Vim
-vim/.vim/.netrwhist
-
-# Emacs
-emacs/.emacs.default/auto-save-list
-emacs/.emacs.default/elpa
-
-*~
-\#*
