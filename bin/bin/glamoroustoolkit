@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-cd $HOME/gtoolkit-install/
-
-./glamoroustoolkit Pharo.image --interactive --no-quit
