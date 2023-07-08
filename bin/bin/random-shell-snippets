@@ -1,0 +1,16 @@
+#: Mount /dev/sdc to /mnt, give me permissions (and use very lax {f,d}masks
+#: which could be 113 and 002 respectively...)
+# sudo mount -o gid=argv,fmask=002,dmask=002 /dev/sdc /mnt
+
+
+#: Open an awesome session in Xephyr; this lets you test
+#: your config in a sandbox (or spin up another WM I guess (?)
+# Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome
+
+
+#: Copy something to the clipboard
+#: e.g. I can C-r to find a command I want to copy, prepend `echo`
+#: double-quote the command and pipe it to xclip. (I actually wanted
+#: to copy the Xephyr command above, which prompted this)
+# <command> | xclip -sel clip
+
