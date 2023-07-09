@@ -1,21 +1,24 @@
 #!/bin/bash
 
-# Wallpaper script
-#sh ~/.fehbg &
+function isMonitorConnected () {
+    xrandr -q | grep -q "HDMI-2 connected"
+}
 
 # X commands
 xmodmap .Xmodmap
-xset b off # Turns off the bell
-xsetroot -cursor_name left_ptr
-xrdb -merge .Xresources
-sh ~/.screenlayout/left.sh &
+
+if isMonitorConnected
+then
+    sh ~/.screenlayout/solo.sh &
+else
+    sh ~/.screenlayout/left.sh &
+fi
 
 picom -b 
 
 emacs --daemon
 
 dunst &
-imwheel -b 45
 sxhkd &
 
 # NOTE: `last-session` is written to by `session-choose.sh`
