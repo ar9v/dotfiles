@@ -18,7 +18,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Key bindings
-bind '"\C-o":"ranger-cd\C-m"'
+bind '"\C-o":". ~/bin/ranger-cd\C-m"'
 
 # Env setups
 # eval "$(rbenv init - bash)"
