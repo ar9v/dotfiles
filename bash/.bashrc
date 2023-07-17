@@ -1,4 +1,4 @@
-PS1=";"
+PS1="; "
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -18,7 +18,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Key bindings
-bind '"\C-o":". ~/bin/ranger-cd\C-m"'
+bind '"\C-o":". ranger\C-m"'
 
 # Env setups
 # eval "$(rbenv init - bash)"
@@ -27,24 +27,9 @@ bind '"\C-o":". ~/bin/ranger-cd\C-m"'
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
 
-# GUIX BASHRC stuff
-# Bash initialization for interactive non-login shells and
-# for remote shells (info "(bash) Bash Startup Files").
-
 # Export 'SHELL' to child processes.  Programs such as 'screen'
 # honor it and otherwise use /bin/sh.
 export SHELL
-
-if [[ $- != *i* ]]
-then
-    # We are being invoked from a non-interactive shell.  If this
-    # is an SSH session (as in "ssh host command"), source
-    # /etc/profile so we get PATH and other essential variables.
-    [[ -n "$SSH_CLIENT" ]] && source /etc/profile
-
-    # Don't do anything else.
-    return
-fi
 
 # Source the system-wide file.
 [ -f /etc/bashrc ] && source /etc/bashrc
