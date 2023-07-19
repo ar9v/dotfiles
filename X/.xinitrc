@@ -20,6 +20,3 @@ emacs --daemon
 
 dunst &
 sxhkd &
-
-# NOTE: `last-session` is written to by `session-choose.sh`
-exec $(cat last-session)
