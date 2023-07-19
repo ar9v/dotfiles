@@ -1,5 +1,5 @@
 configuration {
-  font: "Iosevka Nerd Font 12";
+  font: "Iosevka 14";
   show-icons: true;
   modi: "drun,run,window,ssh";
 }
@@ -7,3 +7,4 @@ configuration {
 element-icon {
   size: 3ch;
 }
+@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
