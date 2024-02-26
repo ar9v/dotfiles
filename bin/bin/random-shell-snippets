@@ -14,3 +14,7 @@
 #: to copy the Xephyr command above, which prompted this)
 # <command> | xclip -sel clip
 
+
+# .eml (email file) -> .html
+# munpack -t <FILENAME>.eml
+
