@@ -3,7 +3,7 @@
 # Script to choose a window manager
 # Simply add or remove wms to the wms array
 
-wms=( stumpwm awesome none )
+wms=( stumpwm sway none )
 wms_size=${#wms[@]}
 
 echo 
@@ -22,18 +22,24 @@ then
    id=0
 fi
 
-session="`command -v ${wms[$id]}`"
 
-case "$session" in
+chosen_wm="${wms[$id]}"
+echo $chosen_wm
+wm_path=$(command -v $chosen_wm)
+
+case "$chosen_wm" in
     none) 
         exit 1
         ;;
+    sway)
+        start-sway.sh
+        ;;
     *)
-        if [[ -n "$session" ]]
+        if [[ -n "$wm_path" ]]
         then
-            echo "$session" > ~/last-session
+            echo $wm_path > ~/last-session && startx
         else
-            echo "$session" is not installed
+            echo "$chosen_wm is not installed"
             exit 1
         fi
         ;;
