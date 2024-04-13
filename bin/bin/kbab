@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-function lowercase () { echo "${1@L}" ; }
-function upscore () { read arg ; echo "${arg//_/-}" ; }
-function kebab () { read arg ; echo "${arg//' '/-}" ; }
-
-lowercase "$1" | upscore | kebab
