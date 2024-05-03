@@ -3,7 +3,7 @@
 # Script to choose a window manager
 # Simply add or remove wms to the wms array
 
-wms=( stumpwm sway none )
+wms=( sway none )
 wms_size=${#wms[@]}
 
 echo 
