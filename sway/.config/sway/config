@@ -1,5 +1,8 @@
 # Read `man 5 sway` for a complete reference.
 
+### Initial setup
+exec emacs --daemon
+
 ### Variables
 set $mod Mod4
 
