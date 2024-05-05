@@ -84,8 +84,9 @@ bindsym $mod+c exec swaymsg "[app_id=kitty] focus" || exec $term
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # TODO rofi -show window
-bindsym $mod+d exec rofi -show drun | xargs swaymsg exec --
-bindsym $mod+TAB exec rofi -show window | xargs swaymsg exec --
+#  see: https://github.com/swaywm/sway/issues/4121
+bindsym $mod+d exec fuzzel | xargs swaymsg exec --
+# bindsym $mod+TAB exec rofi -show window | xargs swaymsg exec --
 
 ## Basics:
 
@@ -227,8 +228,16 @@ bar {
 }
 
 
-### Window visuals
+### Visuals
+font pango:Iosevka 10
+
 gaps inner 10
+
+## Window colors
+#
+# client.<class> <BORDER> <BACKGROUND> <TEXT>   [<INDICATOR> [<CHILD_BORDER>]]
+client.focused   #444444  #444444      #eeeee8
+client.unfocused #222222  #222222      #bbbbb8
 
 
 include /etc/sway/config.d/*
