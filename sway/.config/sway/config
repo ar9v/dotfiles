@@ -83,10 +83,8 @@ bindsym $mod+c exec swaymsg "[app_id=kitty] focus" || exec $term
 
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-# TODO rofi -show window
-#  see: https://github.com/swaywm/sway/issues/4121
-bindsym $mod+d exec fuzzel | xargs swaymsg exec --
-# bindsym $mod+TAB exec rofi -show window | xargs swaymsg exec --
+bindsym $mod+d exec rofi -show drun | xargs swaymsg exec --
+bindsym $mod+TAB exec rofi -show window | xargs swaymsg exec --
 
 ## Basics:
 
