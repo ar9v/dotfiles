@@ -57,7 +57,6 @@ workspace 10 output $laptop_display
 #	Maybe read https://github.com/swaywm/sway/wiki#keyboard-layout
 input "type:keyboard" {
     xkb_layout us,latam
-    xkb_variant ,nodeadkeys
     xkb_options grp:win_space_toggle
 }
 
@@ -233,9 +232,9 @@ gaps inner 10
 
 ## Window colors
 #
-# client.<class> <BORDER> <BACKGROUND> <TEXT>   [<INDICATOR> [<CHILD_BORDER>]]
-client.focused   #444444  #444444      #eeeee8
-client.unfocused #222222  #222222      #bbbbb8
-
+# client.<class>           <BORDER> <BACKGROUND> <TEXT>   [<INDICATOR> [<CHILD_BORDER>]]
+client.focused             #444444  #444444      #eeeee8   #8844aa
+client.focused_tab_title   #64505a  #64505a      #eeeee8   #8844aa
+client.unfocused           #222222  #222222      #bbbbb8
 
 include /etc/sway/config.d/*
