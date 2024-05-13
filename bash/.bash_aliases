@@ -5,6 +5,7 @@ alias grep='grep --color=auto'
 alias l.='ls -d .* --color=auto'
 alias l='ls -CF --color=auto'
 alias la='ls -A --color=auto'
+alias lib="cd $HOME/Documents/library/books"
 alias ll='ls -alF --color=auto'
 alias ls='ls --color=auto'
 alias super_mount='sudo mount -o gid=argv,fmask=002,dmask=002'
