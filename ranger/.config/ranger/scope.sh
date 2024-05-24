@@ -1,4 +1,4 @@
-#!/gnu/store/rib9g2ig1xf3kclyl076w28parmncg4k-bash-minimal-5.1.16/bin/bash
+#!/usr/bin/env bash
 
 set -o noclobber -o noglob -o nounset -o pipefail
 IFS=$'\n'
