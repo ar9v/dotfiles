@@ -20,7 +20,6 @@ export TERM=xterm-256color
 # Tex-Live Manager script
 export TEXMFDIST="/usr/share/texmf-dist"
 
-# Library (my library program) env vars
-# export LIBRARY_PATH="$HOME/Documents/library"
+export SBCL_HOME="/usr/lib/sbcl/"
 
-# session-choose.sh && startx
+session-choose.sh
