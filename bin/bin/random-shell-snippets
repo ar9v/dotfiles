@@ -7,9 +7,14 @@
 # .eml (email file) -> .html
 # munpack -t <FILENAME>.eml
 
+# Download a site
+# -r (recursively), -np (don't follow parent links) -k (make links point to local files)
+# wget -r -np -k <URL>
+
 SNIPPETS=(
   "sudo mount -o gid=argv,fmask=002,dmask=002 /dev/sdc /mnt"
   "munpack -t <FILENAME>.eml"
+  "wget -r -np -k <URL>"
 )
 
 for snip in "${SNIPPETS[@]}"
