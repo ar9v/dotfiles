@@ -19,7 +19,7 @@
   ],
 
   "modules-right": [
-    "pulseaudio",
+    "wireplumber",
     "network",
     "cpu",
     "sway/language",
