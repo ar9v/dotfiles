@@ -1,4 +1,3 @@
-#alias vim='nvim'
 alias brc="vim ~/.bashrc"
 alias fehbg='feh --bg-fill'
 alias grep='grep --color=auto'
