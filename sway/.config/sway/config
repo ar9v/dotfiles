@@ -3,7 +3,7 @@
 
 ### Initial setup
 exec emacs --daemon
-
+exec wlsunset -t 5000
 
 
 ### Variables
@@ -107,6 +107,7 @@ bindsym $mod+s exec grim -g "$(slurp -d)" - | swappy -f -
 # Media
 bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
 bindsym XF86AudioLowerVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
 ## Basics:
 
