@@ -1,3 +1,4 @@
+alias bin="ls ~/bin" # maybe ary = all runnable "y"unk (bin-ary) ha...
 alias brc="vim ~/.bashrc"
 alias fehbg='feh --bg-fill'
 alias grep='grep --color=auto'
