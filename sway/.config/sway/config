@@ -86,6 +86,10 @@ exec swayidle -w \
 
 ### Key bindings
 
+#TODO: backlight keybindings
+bindsym XF86MonBrightnessDown exec "change_brightness -"
+bindsym XF86MonBrightnessUp exec "change_brightness +"
+
 # Commonly used programs
 # This is basically an improvised run-or-raise
 bindsym $mod+f exec swaymsg "[app_id=firefox] focus" || exec firefox
