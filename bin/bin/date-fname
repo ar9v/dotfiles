@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+[[ "$#" -lt 1 ]] && echo "No filename provided!" && exit 1
+[[ "$#" -gt 1 ]] && echo "Provided more than 1 argument. usage: date-fname FILENAME" && exit 2
+
+echo mv "$1" $(LANG=es_MX date +%Y-%m-%B)."${1##*.}"
+mv "$1" $(LANG=es_MX date +%Y-%m-%B)."${1##*.}"
