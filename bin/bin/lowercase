@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ "$#" -eq 1 ]
+then
+    INPUT="$1"
+else
+    read INPUT
+fi
+
+tr '[:upper:]' '[:lower:]' <<<"$INPUT"
