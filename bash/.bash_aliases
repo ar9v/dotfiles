@@ -1,5 +1,7 @@
 alias bin="ls ~/bin" # maybe ary = all runnable "y"unk (bin-ary) ha...
 alias brc="vim ~/.bashrc"
+alias clone="src && git clone"
+alias docs="cd ~/Documents"
 alias fehbg='feh --bg-fill'
 alias grep='grep --color=auto'
 alias l.='ls -d .* --color=auto'
