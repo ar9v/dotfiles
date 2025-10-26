@@ -4,6 +4,7 @@
 ### Initial setup
 exec emacs --daemon
 exec wlsunset -t 5000
+exec mako
 
 
 ### Variables
