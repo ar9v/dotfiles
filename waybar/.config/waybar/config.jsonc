@@ -10,12 +10,12 @@
     "sway/workspaces",
     "sway/mode",
     "sway/scratchpad",
-    "custom/media"
   ],
 
   "modules-center": [
     "clock",
-    "backlight"
+    "backlight",
+    "custom/media"
   ],
 
   "modules-right": [
@@ -25,7 +25,6 @@
     "sway/language",
     "temperature",
     "battery",
-    "tray"
   ],
 
   // Modules configuration
@@ -48,11 +47,6 @@
       "activated": "",
       "deactivated": ""
     }
-  },
-
-  "tray": {
-    // "icon-size": 21,
-    "spacing": 10
   },
 
   "clock": {
@@ -136,7 +130,7 @@
   },
 
   "custom/media": {
-    "format": "{icon} {}",
+    "format": "{icon} {text}",
     "return-type": "json",
     "max-length": 40,
     "format-icons": {
@@ -144,7 +138,6 @@
       "default": "🎜"
     },
     "escape": true,
-    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-    // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
   }
 }
