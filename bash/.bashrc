@@ -72,7 +72,7 @@ function clone_proj () { src && git clone "$1" ; }
 open () {
     CMD=$([ -n "$1" ] && echo "$1" || fzf -e)
 
-    [ -z "$CMD" ]  && (echo "Aborting..." ; return 0)
+    [ -z "$CMD" ]  && { echo "Aborting..." ; return 1 ; }
     [ "$#" -gt 1 ] && echo "open only takes one argument at most; using the first..."
 
     rifle "$CMD"
