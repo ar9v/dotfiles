@@ -1,3 +1,6 @@
-font=Iosevka Mono 16
+font=Iosevka Normal 12
 background-color=#222222
-border-color=#eeeee8
+border-color=#444444
+default-timeout=5000
+width=400
+height=200
