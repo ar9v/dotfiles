@@ -14,6 +14,17 @@
 # Make a PNG's background transparent (-ish)
 # magick image.png -fuzz 20% -transparent white -background none result.png
 
+# Up a PDF's contrast:
+# 1. Turn the PDF into images:
+#    `pdftoppm -jpeg -r 300 <FILE> output`  # "output" is the suffix, pages are numbered
+# 2. Manipulate the jpgs with magick
+#    `convert output*.jpg -normalize -threshold 20% final-%03d.jpg`
+#    - Play with the percentage to get the contrast right
+#    - %03d means `imagemagick` will pad the resulting `jpg` files with 3 digits
+# 3. Use the altered images as the new PDF
+#    `convert final* <NEW_FILENAME>`
+#    or `img2pdf final* -o <NEW_FILENAME>` if imagemagick OOMs lol
+
 SNIPPETS=(
   "sudo mount -o gid=argv,fmask=002,dmask=002 /dev/sdc /mnt"
   "munpack -t <FILENAME>.eml"
