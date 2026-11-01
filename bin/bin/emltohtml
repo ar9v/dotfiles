@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# munpack will return a list of lines
+# each line has two fields:
+# - part
+# - mime type
+# So we extract the part
+HTML_FILE=$(munpack -t "$1" | rg html | cut -d' ' -f 1)
+mv "$HTML_FILE" $(LANG=es_MX date +%Y-%m-%B.html)
+date-fname "$1"
+rm part*
