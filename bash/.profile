@@ -10,6 +10,7 @@ export TERMINAL="kitty" # i3-sensible-terminal uses this
 export VISUAL="$EDITOR"
 export INFOPATH="/usr/share/info:/usr/local/share/info"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
+export NEWT_COLORS=$(<~/.config/nmtui/palette)
 
 # Home
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
