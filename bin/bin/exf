@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+error () {
+  echo "No file specified"
+  exit 1
+}
+
+[ $# -lt 1 ] && error
+
+# TODO script that checks which pdfs do have author and title set? 
+FILE=$1
+IFS= read -r -p "Title: " TITLE
+IFS= read -r -p "Author: " AUTHOR
+
+exiftool -Title="$TITLE" -Author="$AUTHOR" "$FILE"
